@@ -1,6 +1,0 @@
-Dhruman ... don't be lazy.. did you complete the Home Page Template????
-
-This- is Dhruman, no i didn’t do it felt to sleepy last night so i watched some movies and went to sleep.
-
-Link to hashing method we might use:
-https://en.wikipedia.org/wiki/PBKDF2
