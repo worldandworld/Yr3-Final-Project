@@ -10,4 +10,6 @@ Who is doing template ?
 Dhruman do you like to try a nice home page template using Bootstrap..??
 
 Abdul:— I don’t think he can he’s going on vacation at 3am. What do we start from?
-how do i get the sql file from workbench? i tried everything i just don’t see how. 
+how do i get the sql file from workbench? i tried everything i just don’t see how.
+
+File >> Export >> Forward Engineer SQL Create Script.
