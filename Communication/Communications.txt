@@ -13,3 +13,6 @@ Abdul:— I don’t think he can he’s going on vacation at 3am. What do we sta
 how do i get the sql file from workbench? i tried everything i just don’t see how.
 
 File >> Export >> Forward Engineer SQL Create Script.
+
+
+Can you please upload the updated database sql file to this folder in github please? thanks
