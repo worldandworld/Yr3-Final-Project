@@ -44,6 +44,7 @@ CREATE TABLE IF NOT EXISTS `ChittyAccounts`.`Users` (
   `OverDraftLimit` INT NOT NULL COMMENT 'if User accont can go negative and the limit\n',
   `Stayanonymous` TINYINT(1) NULL,
   `AnonymusName` VARCHAR(45) NULL,
+  `passwordSalt` VARCHAR(100) not null,
   PRIMARY KEY (`UserId`),
   UNIQUE INDEX `UserName_UNIQUE` (`UserName` ASC))
 ENGINE = InnoDB;
