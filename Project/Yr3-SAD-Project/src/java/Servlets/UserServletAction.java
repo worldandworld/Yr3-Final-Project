@@ -5,6 +5,7 @@
  */
 package Servlets;
 
+import Accounting.HibernateUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -70,9 +71,16 @@ public class UserServletAction extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
+        // Process request and render page...
+        
+        
+        
+        //End Process Here
+        HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
+        
+        //processRequest(request, response);
     }
 
     /**
