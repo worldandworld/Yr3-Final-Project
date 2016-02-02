@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -39,7 +40,7 @@ public class UserServletAction extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UserServletAction</title>");            
+            out.println("<title>Servlet UserServletAction</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet UserServletAction at " + request.getContextPath() + "</h1>");
@@ -73,19 +74,30 @@ public class UserServletAction extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
-        // Process request and render page...
-        String name = request.getParameter("username");
-        String password = request.getParameter("userPassword");
-        if(name != null && !name.isEmpty() && password !=null && !password.isEmpty()){
-            UserHelper helper = new UserHelper();
-            
+        try {
+            HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
+            // Process request and render page...
+            String name = request.getParameter("username");
+            String password = request.getParameter("userPassword");
+            if (name != null && !name.isEmpty() && password != null && !password.isEmpty()) {
+                UserHelper helper = new UserHelper();
+                boolean u = helper.getUserLogin(name, password);
+                HttpSession session = request.getSession(true);
+                // HibernateUtil.class("user", u)
+
+            } else {
+
+            }
+            //End Process Here
+            HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
+        } catch (Exception ex) {
+            HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().rollback();
+            if (ServletException.class.isInstance(ex)) {
+                throw (ServletException) ex;
+            } else {
+                throw new ServletException(ex);
+            }
         }
-        
-        
-        //End Process Here
-        HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
-        
         //processRequest(request, response);
     }
 

@@ -20,7 +20,7 @@ public class UserHelper {
         this.session = HibernateUtil.getSessionFactory().getCurrentSession();
     }
 
-    public void getUserLogin(String userName, boolean userNameVerified, String userPassword, String firstName, String middleName, String lastName, String address, String town, String state, String country, String postCode, String phone1, String phone2, String idtype, String addressProofType, String idref, String addressRef, Boolean idVirified, int userType, int overDraftLimit, Boolean stayanonymous, String anonymusName, String passwordSalt) {
+    public boolean getUserLogin(String userName, String userPassword) {
         try {
             org.hibernate.Transaction tx = session.beginTransaction();
             Query q = session.createSQLQuery("INSERT INTO `Users` (`UserId`, `UserName`, `UserPassword`) VALUES (NULL,?,?)");
@@ -52,11 +52,13 @@ public class UserHelper {
             int i = q.executeUpdate();
             if(i > 0){
                 System.out.println("Insert sucessfull");
+                return true;
             }
             tx.commit();
              
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return false;
     }
 }
