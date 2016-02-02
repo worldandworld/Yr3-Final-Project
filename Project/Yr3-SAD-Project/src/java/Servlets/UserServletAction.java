@@ -83,7 +83,9 @@ public class UserServletAction extends HttpServlet {
                 UserHelper helper = new UserHelper();
                 boolean u = helper.getUserLogin(name, password);
                 HttpSession session = request.getSession(true);
-                // HibernateUtil.class("user", u)
+                session.setAttribute("user", u);
+                
+                response.sendRedirect("/index.html");
 
             } else {
 
