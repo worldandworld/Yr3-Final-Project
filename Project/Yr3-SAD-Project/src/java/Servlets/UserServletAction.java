@@ -88,7 +88,7 @@ public class UserServletAction extends HttpServlet {
                 response.sendRedirect("/index.html");
 
             } else {
-
+                response.sendRedirect("/failed.html");
             }
             //End Process Here
             HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
