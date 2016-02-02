@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.hibernate.HibernateException;
 
 /**
  *
@@ -92,7 +93,7 @@ public class UserServletAction extends HttpServlet {
             }
             //End Process Here
             HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
-        } catch (Exception ex) {
+        } catch (HibernateException | IOException ex) {
             HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().rollback();
             if (ServletException.class.isInstance(ex)) {
                 throw (ServletException) ex;
