@@ -6,6 +6,7 @@
 package Servlets;
 
 import Accounting.HibernateUtil;
+import Accounting.UserHelper;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -74,7 +75,12 @@ public class UserServletAction extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
         // Process request and render page...
-        
+        String name = request.getParameter("username");
+        String password = request.getParameter("userPassword");
+        if(name != null && !name.isEmpty() && password !=null && !password.isEmpty()){
+            UserHelper helper = new UserHelper();
+            
+        }
         
         
         //End Process Here

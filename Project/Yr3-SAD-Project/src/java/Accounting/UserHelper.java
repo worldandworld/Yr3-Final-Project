@@ -23,35 +23,37 @@ public class UserHelper {
     public void getUserLogin(String userName, boolean userNameVerified, String userPassword, String firstName, String middleName, String lastName, String address, String town, String state, String country, String postCode, String phone1, String phone2, String idtype, String addressProofType, String idref, String addressRef, Boolean idVirified, int userType, int overDraftLimit, Boolean stayanonymous, String anonymusName, String passwordSalt) {
         try {
             org.hibernate.Transaction tx = session.beginTransaction();
-            Query q = session.createSQLQuery("INSERT INTO `Users` (`UserId`, `UserName`, `UserNameVerified`, `UserPassword`, `FirstName`, `MiddleName`, `LastName`, `Address`, `Town`, `State`, `Country`, `PostCode`, `Phone 1`, `Phone 2`, `IDType`, `AddressProofType`, `IDRef`, `AddressRef`, `IdVirified`, `UserType`, `OverDraftLimit`, `Stayanonymous`, `AnonymusName`, `passwordSalt`) VALUES (NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?");
+            Query q = session.createSQLQuery("INSERT INTO `Users` (`UserId`, `UserName`, `UserPassword`) VALUES (NULL,?,?)");
             q.setString(1, userName);
-            q.setBoolean(2, userNameVerified);
-            q.setString(3, userPassword);
-            q.setString(4, firstName);
-            q.setString(5, middleName);
-            q.setString(6, lastName);
-            q.setString(7, address);
-            q.setString(8, town);
-            q.setString(9, state);
-            q.setString(10, country);
-            q.setString(11, postCode);
-            q.setString(12, phone1);
-            q.setString(13, phone2);
-            q.setString(14, idtype);
-            q.setString(15, addressProofType);
-            q.setString(16, idref);
-            q.setString(17, addressRef);
-            q.setBoolean(18, idVirified);
-            q.setInteger(19, userType);
-            q.setInteger(20, overDraftLimit);
-            q.setBoolean(21, stayanonymous);
-            q.setString(22, anonymusName);
-            q.setString(23, passwordSalt);
+    //        q.setBoolean(2, userNameVerified);
+            q.setString(2, userPassword);
+//            q.setBoolean(2, userNameVerified);            
+//            q.setString(4, firstName);
+//            q.setString(5, middleName);
+//            q.setString(6, lastName);
+//            q.setString(7, address);
+//            q.setString(8, town);
+//            q.setString(9, state);
+//            q.setString(10, country);
+//            q.setString(11, postCode);
+//            q.setString(12, phone1);
+//            q.setString(13, phone2);
+//            q.setString(14, idtype);
+//            q.setString(15, addressProofType);
+//            q.setString(16, idref);
+//            q.setString(17, addressRef);
+//            q.setBoolean(18, idVirified);
+//            q.setInteger(19, userType);
+//            q.setInteger(20, overDraftLimit);
+//            q.setBoolean(21, stayanonymous);
+//            q.setString(22, anonymusName);
+//            q.setString(23, passwordSalt);
             
             int i = q.executeUpdate();
             if(i > 0){
                 System.out.println("Insert sucessfull");
             }
+            tx.commit();
              
         } catch (Exception e) {
             e.printStackTrace();
