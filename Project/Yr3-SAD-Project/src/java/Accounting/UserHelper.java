@@ -17,4 +17,8 @@ public class UserHelper {
     public UserHelper() {
         this.session = HibernateUtil.getSessionFactory().getCurrentSession();
     }
+    
+    public void getUserLogin(){
+        
+    }
 }
