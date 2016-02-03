@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.hibernate.HibernateException;
+import org.hibernate.Session;
 
 /**
  *
@@ -83,9 +84,10 @@ public class UserServletAction extends HttpServlet {
             if (name != null && !name.isEmpty() && password != null && !password.isEmpty()) {
                 UserHelper helper = new UserHelper();
                 boolean u = helper.getUserLogin(name, password);
-                HttpSession session = request.getSession(true);
-                session.setAttribute("user", u);
+                Session session = (Session) request.getSession(true);
+                session.update("user", u);
                 
+               
                 response.sendRedirect("/index.html");
 
             } else {
