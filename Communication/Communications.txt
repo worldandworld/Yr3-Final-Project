@@ -1,6 +1,18 @@
-Dhruman ... don't be lazy.. did you complete the Home Page Template????
+Hello What is going on anybody started front end template??
 
-This- is Dhruman, no i didn’t do it felt to sleepy last night so i watched some movies and went to sleep.
 
-Link to hashing method we might use:
+And please paste that link again to this file Abdul..
+
+Here:
 https://en.wikipedia.org/wiki/PBKDF2
+
+Who is doing template ?
+Dhruman do you like to try a nice home page template using Bootstrap..??
+
+Abdul:— I don’t think he can he’s going on vacation at 3am. What do we start from?
+how do i get the sql file from workbench? i tried everything i just don’t see how.
+
+File >> Export >> Forward Engineer SQL Create Script.
+
+
+Can you please upload the updated database sql file to this folder in github please? thanks

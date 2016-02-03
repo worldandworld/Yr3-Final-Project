@@ -1,3 +1,10 @@
+<%-- 
+    Document   : Index
+    Created on : 02-Feb-2016, 17:52:09
+    Author     : Savan Mathew
+--%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,8 +39,8 @@
 
 <body>
 
-    <div class="brand">Business Casual</div>
-    <div class="address-bar">3481 Melrose Place | Beverly Hills, CA 90210 | 123.456.7890</div>
+    <div class="brand">Black White Financial Services</div>
+    <div class="address-bar">46 Clanbrassil Street, Dundalk, Co Louth</div>
 
     <!-- Navigation -->
     <nav class="navbar navbar-default" role="navigation">
