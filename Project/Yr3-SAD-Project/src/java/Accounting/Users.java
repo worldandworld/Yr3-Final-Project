@@ -247,6 +247,11 @@ public class Users  implements java.io.Serializable {
         this.passwordSalt = passwordSalt;
     }
 
+    @Override
+    public String toString() {
+        return "Users{" + "userId=" + userId + ", userName=" + userName + ", userNameVerified=" + userNameVerified + ", userPassword=" + userPassword + ", firstName=" + firstName + ", middleName=" + middleName + ", lastName=" + lastName + ", address=" + address + ", town=" + town + ", state=" + state + ", country=" + country + ", postCode=" + postCode + ", phone1=" + phone1 + ", phone2=" + phone2 + ", idtype=" + idtype + ", addressProofType=" + addressProofType + ", idref=" + idref + ", addressRef=" + addressRef + ", idVirified=" + idVirified + ", userType=" + userType + ", overDraftLimit=" + overDraftLimit + ", stayanonymous=" + stayanonymous + ", anonymusName=" + anonymusName + ", passwordSalt=" + passwordSalt + '}';
+    }
+
 
 
 
