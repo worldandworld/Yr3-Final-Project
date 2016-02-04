@@ -9,6 +9,7 @@ import DBCommands.HibernateUtil;
 import DBCommands.UserHelper;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -76,7 +77,9 @@ public class UserServletAction extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        /*try {
+      /*
+        
+       try {
             HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
             // Process request and render page...
             String name = request.getParameter("userName");
@@ -105,9 +108,10 @@ public class UserServletAction extends HttpServlet {
             }
         }
         //processRequest(request, response);
-        */
-        response.sendRedirect("/Index.jsp");
-        //processRequest(request, response);
+       
+        //response.sendRedirect("/Index.jsp");*/
+        RequestDispatcher disp = getServletContext().getNamedDispatcher("/Index.jsp");
+        disp.forward(request, response);
     }
 
     /**
