@@ -3,6 +3,7 @@
     Created on : 02-Feb-2016, 17:52:09
     Author     : Savan Mathew
 --%>
+<%@page import="Accounting.Users"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -183,6 +184,8 @@
     })
     </script>
 
+    <%Users u = (Users) request.getSession().getAttribute("User"); %>
+    
 </body>
 
 </html>
