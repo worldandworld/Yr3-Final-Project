@@ -7,6 +7,7 @@ package DBCommands;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -15,17 +16,19 @@ import org.hibernate.Session;
 public class UserHelper {
 
     Session session = null;
+    Transaction tx = null;
 
     public UserHelper() {
-        this.session = HibernateUtil.getSessionFactory().getCurrentSession();
+        this.session = HibernateUtil.getSessionFactory().openSession();
     }
 
-    public boolean getUserLogin(String userName, String userPassword) {/*
+    public boolean getUserLogin(String userName, String userPassword) {
+
         try {
-            org.hibernate.Transaction tx = session.beginTransaction();
+            tx = session.beginTransaction();
             Query q = session.createSQLQuery("INSERT INTO `Users` (`UserId`, `UserName`, `UserPassword`) VALUES (NULL,?,?)");
             q.setString(1, userName);
-    //        q.setBoolean(2, userNameVerified);
+            //        q.setBoolean(2, userNameVerified);
             q.setString(2, userPassword);
 //            q.setBoolean(2, userNameVerified);            
 //            q.setString(4, firstName);
@@ -48,17 +51,27 @@ public class UserHelper {
 //            q.setBoolean(21, stayanonymous);
 //            q.setString(22, anonymusName);
 //            q.setString(23, passwordSalt);
-            
+
             int i = q.executeUpdate();
-            if(i > 0){
+            if (i > 0) {
                 System.out.println("Insert sucessfull");
+                tx.commit();
+                session.close();
                 return true;
             }
-            tx.commit();
-             
+
         } catch (Exception e) {
-            e.printStackTrace();
-        }*/
+            try {
+                tx.rollback();
+            } catch (RuntimeException r) {
+                System.out.println("Can't rollback transaction");
+            }
+            throw e;
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
         return false;
     }
 }

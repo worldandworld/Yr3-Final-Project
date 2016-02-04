@@ -108,9 +108,10 @@ public class UserServletAction extends HttpServlet {
             }
         }
         //processRequest(request, response);
-       
+       String file = "/Index.jsp";
         //response.sendRedirect("/Index.jsp");*/
-        RequestDispatcher disp = getServletContext().getRequestDispatcher("/Index.jsp");
+        String file = "/Index.jsp";
+        RequestDispatcher disp = getServletContext().getRequestDispatcher(file);
         disp.forward(request, response);
     }
 

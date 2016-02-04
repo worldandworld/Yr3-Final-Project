@@ -15,22 +15,14 @@ and open the template in the editor.
     <body>
 
 
-        <div>
-            <div id="content-register">
-                <h2>Register a New Account</h2>
-                <div class="content">
-                    
-                    <form  action="UserServletAction" >
-                        <label for="fname">Username</label>
-                        <input type="text" name="userName" id="fname">
+                    <form  action="DbActionServlet" method="POST">
+                        Username
+                        <input type="text" name="userName">
 
-                        <label for="password1">Password</label>
+                        Password
                         <input type="password" name="userPassword">
 
-                        <input type="submit" name="registerbtn" value="register" >
+                        <input type="submit" name="action" value="register" >
                     </form>
-                </div>
-            </div>
-        </div>
     </body>
 </html>
