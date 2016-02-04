@@ -1,4 +1,4 @@
-package DBCommands;
+package TablesDto;
 // Generated Feb 2, 2016 1:25:00 AM by Hibernate Tools 4.3.1
 
 

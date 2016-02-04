@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Feb 2, 2016 1:25:01 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="accounting" name="DBCommands.Users" optimistic-lock="version" table="Users">
+  <class catalog="accounting" name="TablesDto.Users" optimistic-lock="version" table="Users">
     <id name="userId" type="java.lang.Integer">
       <column name="UserId"/>
       <generator class="identity"/>
