@@ -110,7 +110,7 @@ public class UserServletAction extends HttpServlet {
         //processRequest(request, response);
        
         //response.sendRedirect("/Index.jsp");*/
-        RequestDispatcher disp = getServletContext().getNamedDispatcher("/Index.jsp");
+        RequestDispatcher disp = getServletContext().getRequestDispatcher("/Index.jsp");
         disp.forward(request, response);
     }
 
