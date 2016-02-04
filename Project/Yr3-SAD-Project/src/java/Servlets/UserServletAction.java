@@ -5,8 +5,8 @@
  */
 package Servlets;
 
-import Accounting.HibernateUtil;
-import Accounting.UserHelper;
+import DBCommands.HibernateUtil;
+import DBCommands.UserHelper;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -14,7 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
@@ -76,25 +76,26 @@ public class UserServletAction extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
+        /*try {
             HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
             // Process request and render page...
-            String name = request.getParameter("username");
+            String name = request.getParameter("userName");
             String password = request.getParameter("userPassword");
-            if (name != null && !name.isEmpty() && password != null && !password.isEmpty()) {
-                UserHelper helper = new UserHelper();
-                boolean u = helper.getUserLogin(name, password);
-                Session session = (Session) request.getSession(true);
-                session.update("user", u);
-                
-               
-                response.sendRedirect("/index.html");
+            if (request.getParameter("register").equals("register")) {
+                if (name != null && !name.isEmpty() && password != null && !password.isEmpty()) {
+                    UserHelper helper = new UserHelper();
+                    boolean u = helper.getUserLogin(name, password);
+                    Session session = (Session) request.getSession(true);
+                    session.update("user", u);
 
-            } else {
-                response.sendRedirect("/failed.html");
+                    response.sendRedirect("/index.html");
+
+                } else {
+                    response.sendRedirect("/Index.jsp");
+                }
+                //End Process Here
+                HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
             }
-            //End Process Here
-            HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
         } catch (HibernateException | IOException ex) {
             HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().rollback();
             if (ServletException.class.isInstance(ex)) {
@@ -103,6 +104,9 @@ public class UserServletAction extends HttpServlet {
                 throw new ServletException(ex);
             }
         }
+        //processRequest(request, response);
+        */
+        response.sendRedirect("/Index.jsp");
         //processRequest(request, response);
     }
 

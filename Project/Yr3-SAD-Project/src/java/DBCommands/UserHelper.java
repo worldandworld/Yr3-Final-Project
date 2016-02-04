@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Accounting;
+package DBCommands;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -20,7 +20,7 @@ public class UserHelper {
         this.session = HibernateUtil.getSessionFactory().getCurrentSession();
     }
 
-    public boolean getUserLogin(String userName, String userPassword) {
+    public boolean getUserLogin(String userName, String userPassword) {/*
         try {
             org.hibernate.Transaction tx = session.beginTransaction();
             Query q = session.createSQLQuery("INSERT INTO `Users` (`UserId`, `UserName`, `UserPassword`) VALUES (NULL,?,?)");
@@ -58,7 +58,7 @@ public class UserHelper {
              
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
         return false;
     }
 }

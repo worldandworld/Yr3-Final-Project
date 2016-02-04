@@ -21,14 +21,14 @@ and open the template in the editor.
                 <div class="content">
                     
                     <a href="#" class="leftsidelink" id="showlogin">&larr; Already Have an Account? Login Now!</a>
-                    <form id="register" name="register" action="UserServletaction" >
+                    <form  action="UserServletAction" method="post" >
                         <label for="fname">Username</label>
-                        <input type="text" name="fname" id="fname" class="txtfield" tabindex="4" autocomplete="off">
+                        <input type="text" name="userName" id="fname" class="txtfield" tabindex="4" autocomplete="off">
 
                         <label for="password1">Password</label>
-                        <input type="password" name="password1" id="password1" class="txtfield" tabindex="7" autocomplete="off">
+                        <input type="password" name="userPassword" id="password1" class="txtfield" tabindex="7" autocomplete="off">
 
-                        <input type="submit" name="registerbtn" id="registerbtn" value="Sign Up" class="btn" tabindex="9">
+                        <input type="submit" name="register" id="registerbtn" value="register" class="btn" tabindex="9">
                     </form>
                 </div>
             </div>

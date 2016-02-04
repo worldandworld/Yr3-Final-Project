@@ -184,7 +184,12 @@
     })
     </script>
 
-    <%Users u = (Users) request.getSession().getAttribute("User"); %>
+    <%boolean u = (boolean)request.getSession().getAttribute("user"); 
+    if(u){
+       out.println("Success");
+    }%>
+    
+    %>
     
 </body>
 
