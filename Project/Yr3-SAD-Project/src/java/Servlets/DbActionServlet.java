@@ -47,7 +47,7 @@ public class DbActionServlet extends HttpServlet {
                 HttpSession session = request.getSession(true);
                 session.setAttribute("user", u);
 
-                response.sendRedirect("/index.html");
+                response.sendRedirect("/Index.jsp");
 
             } else {
                 response.sendRedirect(file);
