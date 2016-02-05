@@ -43,11 +43,11 @@ public class DbActionServlet extends HttpServlet {
         if (request.getParameter("action").equalsIgnoreCase("register")) {
             if (name != null && !name.isEmpty() && password != null && !password.isEmpty()) {
                 UserHelper helper = new UserHelper();
-                boolean u = helper.getUserLogin(name, password);
+                boolean u = helper.registerUser(name, password);
                 HttpSession session = request.getSession(true);
                 session.setAttribute("user", u);
 
-                response.sendRedirect("/Index.jsp");
+                response.sendRedirect("Index.jsp");
 
             } else {
                 response.sendRedirect(file);
