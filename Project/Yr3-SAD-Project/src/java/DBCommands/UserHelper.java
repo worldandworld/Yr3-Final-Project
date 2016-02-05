@@ -53,8 +53,14 @@ public class UserHelper {
         }
         return false;
     }
-    
-    
+
+    /**
+     * Encrypt the clear-text password using the same salt that was used to encrypt the original password
+     * @param attemptedPassword
+     * @param encryptedPassword
+     * @param salt
+     * @return
+     */
     public boolean authenticatePassword(String attemptedPassword, byte[] encryptedPassword, byte[] salt){
         //For now just do this -->
         return false;
