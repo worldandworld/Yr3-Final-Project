@@ -24,9 +24,8 @@ public class UserHelper {
 
     /**
      * User 
-     * @param userName
-     * @param userPassword
-     * @param salt
+     * @param userName Username retrieved from user table in DB
+     * @param userPassword User password retrieved table in db
      * @return
      */
     public boolean registerUser(String userName, String userPassword) {
@@ -63,9 +62,9 @@ public class UserHelper {
 
     /**
      * Encrypt the clear-text password using the same salt that was used to encrypt the original password
-     * @param attemptedPassword
-     * @param encryptedPassword
-     * @param salt
+     * @param attemptedPassword Password entered by user as login
+     * @param encryptedPassword Password already hashed and saved in the database
+     * @param salt Password salt
      * @return
      */
     public boolean authenticatePassword(String attemptedPassword, byte[] encryptedPassword, byte[] salt){
