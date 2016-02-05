@@ -22,6 +22,13 @@ public class UserHelper {
         this.session = HibernateUtil.getSessionFactory().openSession();
     }
 
+    /**
+     * User 
+     * @param userName
+     * @param userPassword
+     * @param salt
+     * @return
+     */
     public boolean registerUser(String userName, String userPassword) {
 
         try {
