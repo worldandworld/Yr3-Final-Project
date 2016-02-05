@@ -55,7 +55,7 @@ public class UserHelper {
     }
     
     
-    public boolean authenticatePassword(){
+    public boolean authenticatePassword(String attemptedPassword, byte[] encryptedPassword, byte[] salt){
         //For now just do this -->
         return false;
     }
