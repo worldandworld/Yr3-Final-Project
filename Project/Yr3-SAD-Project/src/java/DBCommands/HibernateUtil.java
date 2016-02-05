@@ -21,20 +21,17 @@ import org.hibernate.service.ServiceRegistryBuilder;
 public class HibernateUtil
 {
 
-    private static final SessionFactory sessionFactory;
+    private static final SessionFactory sessionFactory = buildSessionFactory();
 
-    static {
+   private static SessionFactory buildSessionFactory(){
         try {
             // Create the SessionFactory from standard (hibernate.cfg.xml)
             // config file.
-            //sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
             //Annotation
             Configuration cfg = new Configuration();
-            cfg.configure();
-
-            ServiceRegistry serviceregistry = new ServiceRegistryBuilder().applySettings(cfg.getProperties()).build();
-
-            Session session = cfg.configure().buildSessionFactory(serviceregistry).openSession();
+            SessionFactory sf = (SessionFactory) cfg.configure().buildSessionFactory();
+            return sf;
+            
         } catch (Throwable ex) {
             // Log the exception. 
             System.err.println("Initial SessionFactory creation failed." + ex);
