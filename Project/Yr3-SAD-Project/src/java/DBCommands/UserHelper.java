@@ -53,4 +53,10 @@ public class UserHelper {
         }
         return false;
     }
+    
+    
+    public boolean authenticatePassword(){
+        //For now just do this -->
+        return false;
+    }
 }
