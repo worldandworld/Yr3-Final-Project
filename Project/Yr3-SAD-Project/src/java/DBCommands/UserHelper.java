@@ -5,6 +5,13 @@
  */
 package DBCommands;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
+import java.util.Arrays;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -23,7 +30,8 @@ public class UserHelper {
     }
 
     /**
-     * User 
+     * User
+     *
      * @param userName Username retrieved from user table in DB
      * @param userPassword User password retrieved table in db
      * @return
@@ -49,7 +57,7 @@ public class UserHelper {
                 tx.rollback();
             } catch (RuntimeException r) {
                 System.out.println("Can't rollback transaction");
-                
+
             }
             throw e;
         } finally {
@@ -61,14 +69,47 @@ public class UserHelper {
     }
 
     /**
-     * Encrypt the clear-text password using the same salt that was used to encrypt the original password
+     * Encrypt the clear-text password using the same salt that was used to
+     * encrypt the original password
+     *
      * @param attemptedPassword Password entered by user as login
-     * @param encryptedPassword Password already hashed and saved in the database
+     * @param encryptedPassword Password already hashed and saved in the
+     * database
      * @param salt Password salt
      * @return
+     * @throws java.security.NoSuchAlgorithmException
+     * @throws java.security.spec.InvalidKeySpecException
      */
-    public boolean authenticatePassword(String attemptedPassword, byte[] encryptedPassword, byte[] salt){
-        //For now just do this -->
-        return false;
+    public boolean authenticatePassword(String attemptedPassword, byte[] encryptedPassword, byte[] salt) throws NoSuchAlgorithmException, InvalidKeySpecException {
+        
+        byte[] encryptedAttemptedPassword = getEncryptedPassword(attemptedPassword, salt);
+
+        return Arrays.equals(encryptedPassword, encryptedAttemptedPassword);
     }
+
+    public byte[] getEncryptedPassword(String password, byte[] salt) throws NoSuchAlgorithmException, InvalidKeySpecException {
+        String algorithm = "PBKDF2WithHmacSHA512";
+        // SHA-512 generates 160 bit hashes, so that's what makes sense here
+        int derivedKeyLength = 160;
+
+        int iterations = 20000;
+
+        KeySpec spec = new PBEKeySpec(password.toCharArray(), salt, iterations, derivedKeyLength);
+
+        SecretKeyFactory f = SecretKeyFactory.getInstance(algorithm);
+
+        return f.generateSecret(spec).getEncoded();
+    }
+
+    public byte[] generateSalt() throws NoSuchAlgorithmException {
+
+        SecureRandom random = SecureRandom.getInstance("SHA512PRNG");
+
+        byte[] salt = new byte[8];
+        random.nextBytes(salt);
+
+        return salt;
+
+    }
+
 }
