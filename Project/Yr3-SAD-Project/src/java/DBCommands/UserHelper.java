@@ -35,14 +35,17 @@ public class UserHelper {
      * @param userName Username retrieved from user table in DB
      * @param userPassword User password retrieved table in db
      * @return
+     * @throws java.security.NoSuchAlgorithmException
+     * @throws java.security.spec.InvalidKeySpecException
      */
-    public boolean registerUser(String userName, String userPassword) {
+    public boolean registerUser(String userName, String userPassword) throws NoSuchAlgorithmException, InvalidKeySpecException {
 
         try {
             tx = session.beginTransaction();
-            Query q = session.createSQLQuery("INSERT INTO `Users` (`UserId`, `UserName`, `UserPassword`) VALUES (NULL,?,?)");
+            Query q = session.createSQLQuery("INSERT INTO `Users` (`UserId`, `UserName`, `UserPassword`,`passwordSalt`) VALUES (NULL,?,?,?)");
             q.setParameter(0, userName);
-            q.setParameter(1, userPassword);
+            q.setParameter(1, String.valueOf(getEncryptedPassword(userPassword,generateSalt())));
+            q.setParameter(2, generateSalt());
 
             int i = q.executeUpdate();
             if (i > 0) {
@@ -81,7 +84,7 @@ public class UserHelper {
      * @throws java.security.spec.InvalidKeySpecException
      */
     public boolean authenticatePassword(String attemptedPassword, byte[] encryptedPassword, byte[] salt) throws NoSuchAlgorithmException, InvalidKeySpecException {
-        
+
         byte[] encryptedAttemptedPassword = getEncryptedPassword(attemptedPassword, salt);
 
         return Arrays.equals(encryptedPassword, encryptedAttemptedPassword);
@@ -89,9 +92,9 @@ public class UserHelper {
 
     public byte[] getEncryptedPassword(String password, byte[] salt) throws NoSuchAlgorithmException, InvalidKeySpecException {
         String algorithm = "PBKDF2WithHmacSHA512";
-        // SHA-512 generates 160 bit hashes, so that's what makes sense here
-        int derivedKeyLength = 160;
-
+        // SHA-512 generates 256 bit hashes, so that's what makes sense here
+        int derivedKeyLength = 256;
+        // Pick a iteration
         int iterations = 20000;
 
         KeySpec spec = new PBEKeySpec(password.toCharArray(), salt, iterations, derivedKeyLength);
@@ -103,8 +106,9 @@ public class UserHelper {
 
     public byte[] generateSalt() throws NoSuchAlgorithmException {
 
-        SecureRandom random = SecureRandom.getInstance("SHA512PRNG");
+        SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
 
+        // Generate a 8 byte (64 bit) salt
         byte[] salt = new byte[8];
         random.nextBytes(salt);
 
