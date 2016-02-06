@@ -12,6 +12,7 @@ import java.security.spec.KeySpec;
 import java.util.Arrays;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -44,8 +45,8 @@ public class UserHelper {
             tx = session.beginTransaction();
             Query q = session.createSQLQuery("INSERT INTO `Users` (`UserId`, `UserName`, `UserPassword`,`passwordSalt`) VALUES (NULL,?,?,?)");
             q.setParameter(0, userName);
-            q.setParameter(1, String.valueOf(getEncryptedPassword(userPassword,generateSalt())));
-            q.setParameter(2, generateSalt());
+            q.setParameter(1, Arrays.toString(getEncryptedPassword(userPassword,generateSalt())));
+            q.setParameter(2, Arrays.toString(generateSalt()));
 
             int i = q.executeUpdate();
             if (i > 0) {
@@ -55,7 +56,7 @@ public class UserHelper {
             }
 
             session.close();
-        } catch (Exception e) {
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException | HibernateException e) {
             try {
                 tx.rollback();
             } catch (RuntimeException r) {
