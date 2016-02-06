@@ -28,3 +28,7 @@ ok Dhruman
 
 
 Savan What happened with HibernateUtil.java? it has error now etc. also we have to start making javadocs
+
+Savan I already added the folder to github
+
+I’ll start with the other things.can you please commit the one u did for the sql for database validation start up etc. thanks 
