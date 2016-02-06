@@ -45,8 +45,9 @@ public class UserHelper {
             tx = session.beginTransaction();
             Query q = session.createSQLQuery("INSERT INTO `Users` (`UserId`, `UserName`, `UserPassword`,`passwordSalt`) VALUES (NULL,?,?,?)");
             q.setParameter(0, userName);
-            q.setParameter(1, Arrays.toString(getEncryptedPassword(userPassword,generateSalt())));
-            q.setParameter(2, Arrays.toString(generateSalt()));
+            q.setParameter(1, byteArrayToHexString(getEncryptedPassword(userPassword,generateSalt())));
+            q.setParameter(2, byteArrayToHexString(generateSalt()));
+            //System.out.println("hello" + byteArrayToHexString(generateSalt()));
 
             int i = q.executeUpdate();
             if (i > 0) {
@@ -116,5 +117,13 @@ public class UserHelper {
         return salt;
 
     }
-
+public String byteArrayToHexString(byte[] byteArray)
+{
+    String returnString="";
+    for(int i=0;i<byteArray.length;i++)
+    {
+        returnString+=Integer.toHexString(Byte.toUnsignedInt(byteArray[i]));
+    }
+    return returnString;
+}
 }
