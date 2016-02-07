@@ -26,6 +26,9 @@ public class UserHelper {
     Session session = null;
     Transaction tx = null;
 
+    /**
+     *This is the user command class
+     */
     public UserHelper() {
         this.session = HibernateUtil.getSessionFactory().openSession();
     }
@@ -48,7 +51,6 @@ public class UserHelper {
             q.setParameter(1, byteArrayToHexString(getEncryptedPassword(userPassword,generateSalt())));
             q.setParameter(2, byteArrayToHexString(generateSalt()));
             //System.out.println("hello" + byteArrayToHexString(generateSalt()));
-
             int i = q.executeUpdate();
             if (i > 0) {
                 System.out.println("Insert sucessfull");
@@ -92,6 +94,14 @@ public class UserHelper {
         return Arrays.equals(encryptedPassword, encryptedAttemptedPassword);
     }
 
+    /**
+     *
+     * @param password
+     * @param salt
+     * @return
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     */
     public byte[] getEncryptedPassword(String password, byte[] salt) throws NoSuchAlgorithmException, InvalidKeySpecException {
         String algorithm = "PBKDF2WithHmacSHA512";
         // SHA-512 generates 256 bit hashes, so that's what makes sense here
@@ -106,6 +116,11 @@ public class UserHelper {
         return f.generateSecret(spec).getEncoded();
     }
 
+    /**
+     *
+     * @return
+     * @throws NoSuchAlgorithmException
+     */
     public byte[] generateSalt() throws NoSuchAlgorithmException {
 
         SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
@@ -117,7 +132,13 @@ public class UserHelper {
         return salt;
 
     }
-public String byteArrayToHexString(byte[] byteArray)
+
+    /**
+     *
+     * @param byteArray
+     * @return
+     */
+    public String byteArrayToHexString(byte[] byteArray)
 {
     String returnString="";
     for(int i=0;i<byteArray.length;i++)
