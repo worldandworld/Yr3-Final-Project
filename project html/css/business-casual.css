@@ -14,7 +14,7 @@ body {
     -o-background-size: cover;
 }
 
-h1,
+
 h2,
 h3,
 h4,
@@ -25,7 +25,13 @@ h6 {
     font-weight: 700;
     letter-spacing: 1px;
 }
-
+h1
+{
+	text-align: center;
+  color: #ffffff;
+  font-weight: 300;
+  margin: 0 0 40px;
+}
 p {
     font-size: 1.25em;
     line-height: 1.6;
@@ -81,7 +87,7 @@ hr {
 .box {
     margin-bottom: 20px;
     padding: 30px 15px;
-    background: #fff;
+    background: #999;
     background: rgba(255,255,255,0.9);
 }
 
