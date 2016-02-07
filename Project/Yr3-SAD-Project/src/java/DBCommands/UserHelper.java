@@ -96,7 +96,7 @@ public class UserHelper {
         String algorithm = "PBKDF2WithHmacSHA512";
         // SHA-512 generates 256 bit hashes, so that's what makes sense here
         int derivedKeyLength = 256;
-        // Pick a iteration
+        // Pick an iteration. Usually iteration over 1000
         int iterations = 20000;
 
         KeySpec spec = new PBEKeySpec(password.toCharArray(), salt, iterations, derivedKeyLength);
