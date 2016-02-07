@@ -47,9 +47,10 @@ public class UserHelper {
         try {
             tx = session.beginTransaction();
             Query q = session.createSQLQuery("INSERT INTO `Users` (`UserId`, `UserName`, `UserPassword`,`passwordSalt`) VALUES (NULL,?,?,?)");
+            byte [] salt = generateSalt();
             q.setParameter(0, userName);
-            q.setParameter(1, byteArrayToHexString(getEncryptedPassword(userPassword,generateSalt())));
-            q.setParameter(2, byteArrayToHexString(generateSalt()));
+            q.setParameter(1, byteArrayToHexString(getEncryptedPassword(userPassword,salt)));
+            q.setParameter(2, byteArrayToHexString(salt));
             //System.out.println("hello" + byteArrayToHexString(generateSalt()));
             int i = q.executeUpdate();
             if (i > 0) {
@@ -148,3 +149,6 @@ public class UserHelper {
     return returnString;
 }
 }
+
+//password reset
+//registrator captcha

@@ -10,5 +10,6 @@
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
     <mapping resource="TablesDto/Users.hbm.xml"/>
+    <mapping resource="TablesDto/Chitty.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
