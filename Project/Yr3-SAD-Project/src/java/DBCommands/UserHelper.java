@@ -53,6 +53,7 @@ public class UserHelper {
             q.setParameter(2, byteArrayToHexString(salt));
             //System.out.println("hello" + byteArrayToHexString(generateSalt()));
             int i = q.executeUpdate();
+           
             if (i > 0) {
                 System.out.println("Insert sucessfull");
                 tx.commit();
