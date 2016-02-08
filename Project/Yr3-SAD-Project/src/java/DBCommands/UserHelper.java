@@ -135,7 +135,7 @@ public class UserHelper {
     }
 
     /**
-     *
+     * 
      * @param byteArray
      * @return
      */
