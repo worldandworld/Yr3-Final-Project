@@ -1,3 +1,10 @@
+<%-- 
+    Document   : newjsp
+    Created on : 09-Feb-2016, 01:19:31
+    Author     : me
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,13 +41,15 @@
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-
+        <script src="js/index.js"></script>
     </head>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.5.1.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#container').load('./login1.html');
         });
     </script> 
+    <script src="js/index.js"></script>
     <body>
 
 
@@ -89,117 +98,30 @@
         <div class="brand">Chitty Account</div>
         <div class="address-bar">46 ClanBrasil Street | Dundalk, Louth | 042.123.4567</div>
         <div class="container">
-            div class="box">
-            <div class="col-md-3"></div>
-            <div class="col-md-6">
-                <div class="form">
-
-                    <ul class="tab-group">
-                        <li class="tab active"><a href="#login">Log In</a></li>
-                        <li class="tab"><a href="#signup">Sign Up</a></li>
-
-                    </ul>
-
-                    <div class="tab-content dhruman">
-
-                        <div id="login">   
-                            <h1 >Welcome Back!</h1>
-
-                            <form action="/" method="post">
-
-                                <div class="field-wrap">
-                                    <label>
-                                        Email Address<span class="req">*</span>
-                                    </label>
-                                    <input type="email"required autocomplete="off" class="dhruman"/>
-                                </div>
-
-                                <div class="field-wrap">
-                                    <label>
-                                        Password<span class="req">*</span>
-                                    </label>
-                                    <input type="password"required autocomplete="off" />
-                                </div>
-
-                                <p class="forgot"><a href="#">Forgot Password?</a></p>
-
-                                <button class="button button-block"/>Log In</button>
-
-                            </form>
-
-                        </div>
-                        <div id="signup">   
-                            <h1>Sign Up for Free</h1>
-
-                            <form action="/" method="post">
-
-                                <div class="top-row">
-                                    <div class="field-wrap">
-                                        <label>
-                                            First Name<span class="req">*</span>
-                                        </label>
-                                        <input type="text" required autocomplete="off" />
-                                    </div>
-
-                                    <div class="field-wrap">
-                                        <label>
-                                            Last Name<span class="req">*</span>
-                                        </label>
-                                        <input type="text"required autocomplete="off"/>
-                                    </div>
-                                </div>
-
-                                <div class="field-wrap">
-                                    <label>
-                                        Email Address<span class="req">*</span>
-                                    </label>
-                                    <input type="email"required autocomplete="off"/>
-                                </div>
-
-                                <div class="field-wrap">
-                                    <label>
-                                        Set A Password<span class="req">*</span>
-                                    </label>
-                                    <input type="password"required autocomplete="off"/>
-                                </div>
-
-                                <button type="submit" class="button button-block"/>Sign Up</button>
-
-                            </form>
-
-                        </div>
-
-                    </div><!-- tab-content -->
-
-                </div> <!-- /form -->
+            <div id="container" class="box">
 
             </div>
-            <div class="clearfix"></div>
         </div>
-        <div class="clearfix"></div>
+        <!-- /.container -->
 
-    </div>
-</div>
-<!-- /.container -->
-
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12  text-center">
-                <p>Copyright &copy; Your Website 2016</p>
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12  text-center">
+                        <p>Copyright &copy; Your Website 2016</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</footer>
+        </footer>
 
-<!-- jQuery -->
-<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+        <!-- jQuery -->
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
-<script src="js/index.js"></script>
-<script src="js/jquery.js"></script>
-<!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
+        <script src="js/index.js"></script>
+        <script src="js/jquery.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
 
-</body>
+    </body>
 
 </html>
