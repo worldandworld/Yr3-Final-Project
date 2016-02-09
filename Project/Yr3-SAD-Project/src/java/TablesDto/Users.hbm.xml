@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 2, 2016 1:25:01 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="accounting" name="TablesDto.Users" optimistic-lock="version" table="Users">
+    <id name="userId" type="java.lang.Integer">
+      <column name="UserId"/>
+      <generator class="identity"/>
+    </id>
+    <property name="userName" type="string">
+      <column length="45" name="UserName" not-null="true" unique="true"/>
+    </property>
+    <property name="userNameVerified" type="boolean">
+      <column name="UserNameVerified" not-null="true"/>
+    </property>
+    <property name="userPassword" type="string">
+      <column length="64" name="UserPassword" not-null="true"/>
+    </property>
+    <property name="firstName" type="string">
+      <column length="45" name="FirstName" not-null="true"/>
+    </property>
+    <property name="middleName" type="string">
+      <column length="45" name="MiddleName"/>
+    </property>
+    <property name="lastName" type="string">
+      <column length="45" name="LastName" not-null="true"/>
+    </property>
+    <property name="address" type="string">
+      <column length="45" name="Address" not-null="true"/>
+    </property>
+    <property name="town" type="string">
+      <column length="25" name="Town" not-null="true"/>
+    </property>
+    <property name="state" type="string">
+      <column length="25" name="State" not-null="true"/>
+    </property>
+    <property name="country" type="string">
+      <column length="25" name="Country" not-null="true"/>
+    </property>
+    <property name="postCode" type="string">
+      <column length="25" name="PostCode"/>
+    </property>
+    <property name="phone1" type="string">
+      <column length="15" name="`Phone 1`"/>
+    </property>
+    <property name="phone2" type="string">
+      <column length="15" name="`Phone 2`"/>
+    </property>
+    <property name="idtype" type="string">
+      <column length="15" name="IDType"/>
+    </property>
+    <property name="addressProofType" type="string">
+      <column length="15" name="AddressProofType"/>
+    </property>
+    <property name="idref" type="string">
+      <column length="15" name="IDRef"/>
+    </property>
+    <property name="addressRef" type="string">
+      <column length="15" name="AddressRef"/>
+    </property>
+    <property name="idVirified" type="java.lang.Boolean">
+      <column name="IdVirified"/>
+    </property>
+    <property name="userType" type="int">
+      <column name="UserType" not-null="true">
+        <comment>Admin, Standard User, Manager etc</comment>
+      </column>
+    </property>
+    <property name="overDraftLimit" type="int">
+      <column name="OverDraftLimit" not-null="true">
+        <comment>if User accont can go negative and the limit</comment>
+      </column>
+    </property>
+    <property name="stayanonymous" type="java.lang.Boolean">
+      <column name="Stayanonymous"/>
+    </property>
+    <property name="anonymusName" type="string">
+      <column length="45" name="AnonymusName"/>
+    </property>
+    <property name="passwordSalt" type="string">
+      <column length="100" name="passwordSalt" not-null="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

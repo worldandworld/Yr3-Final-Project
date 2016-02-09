@@ -1,0 +1,34 @@
+Hello What is going on anybody started front end template??
+
+
+And please paste that link again to this file Abdul..
+
+Here:
+https://en.wikipedia.org/wiki/PBKDF2
+
+Who is doing template ?
+Dhruman do you like to try a nice home page template using Bootstrap..??
+
+Abdul:— I don’t think he can he’s going on vacation at 3am. What do we start from?
+how do i get the sql file from workbench? i tried everything i just don’t see how.
+
+File >> Export >> Forward Engineer SQL Create Script.
+
+
+Can you please upload the updated database sql file to this folder in github please? thanks
+
+
+Savan did you change something in the user actin servlet ?
+ 
+ 
+Dhruman- yes i am on vaction so i didnt start any thing but today i am going to start fornt end templates tommrow i will have somthing to show u guyss.
+
+
+ok Dhruman 
+
+
+Savan What happened with HibernateUtil.java? it has error now etc. also we have to start making javadocs
+
+Savan I already added the folder to github
+
+I’ll start with the other things.can you please commit the one u did for the sql for database validation start up etc. thanks 
