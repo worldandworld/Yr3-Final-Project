@@ -178,13 +178,17 @@ public class UserHelper {
      * @return
      */
     public String byteArrayToHexString(byte[] byteArray) {
-        String returnString = "";
+        /*String returnString = "";
         for (int i = 0; i < byteArray.length; i++) {
             returnString += Integer.toHexString(Byte.toUnsignedInt(byteArray[i]));
         }
-        return returnString;
+        return returnString;*/
+        return new String(byteArray);
     }
-    public 
+    public byte[] hexStringToByteArray(String hexString)
+    {
+        return hexString.getBytes();
+    }
 }
 
 //password reset
