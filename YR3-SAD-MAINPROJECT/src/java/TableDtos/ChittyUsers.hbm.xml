@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 10, 2016 3:20:32 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="TableDtos.ChittyUsers" table="ChittyUsers" catalog="accounting" optimistic-lock="version">
+        <composite-id name="id" class="TableDtos.ChittyUsersId">
+            <key-property name="userId" type="int">
+                <column name="UserId" />
+            </key-property>
+            <key-property name="chittyId" type="int">
+                <column name="ChittyID" />
+            </key-property>
+        </composite-id>
+        <property name="latePaymentFee" type="java.lang.Integer">
+            <column name="LatePaymentFee" />
+        </property>
+    </class>
+</hibernate-mapping>
