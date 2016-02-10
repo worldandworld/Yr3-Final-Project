@@ -58,7 +58,7 @@
                         document.getElementById("demo").innerHTML = xhttp.responseText;
                     }
                 };
-                xhttp.open("GET", "login2.html", true);
+                xhttp.open("GET", "login.html", true);
                 xhttp.send();
 
             }
@@ -135,7 +135,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-                    <a class="navbar-brand" href="Index.jsp">Business Casual</a>
+                    <a class="navbar-brand" href="Index.jsp">Black White</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
