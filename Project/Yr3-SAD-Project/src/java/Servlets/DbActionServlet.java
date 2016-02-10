@@ -45,10 +45,10 @@ public class DbActionServlet extends HttpServlet {
         String file = "/Index.jsp";
         String name = request.getParameter("userName");
         String password = request.getParameter("userPassword");
-        if (request.getParameter("action").equalsIgnoreCase("login")) {
+        if (request.getParameter("action").equalsIgnoreCase("register")) {
             if (name != null && !name.isEmpty() && password != null && !password.isEmpty()) {
                 UserHelper helper = new UserHelper();
-                boolean u = helper.loginUser(name, password);
+                boolean u = helper.registerUser(name, password);
                 HttpSession session = request.getSession(true);
                 session.setAttribute("user", u);
 

@@ -52,8 +52,8 @@ public class UserHelper {
             Query q = session.createSQLQuery("INSERT INTO `Users` (`UserId`, `UserName`, `UserPassword`,`passwordSalt`) VALUES (NULL,?,?,?)");
             byte[] salt = generateSalt();
             q.setParameter(0, userName);
-            q.setParameter(1, byteArrayToHexString(getEncryptedPassword(userPassword, salt)));
-            q.setParameter(2, byteArrayToHexString(salt));
+            q.setParameter(1, getEncryptedPassword(userPassword, salt));
+            q.setParameter(2,salt);
             //System.out.println("hello" + byteArrayToHexString(generateSalt()));
             int i = q.executeUpdate();
 
@@ -89,9 +89,14 @@ public class UserHelper {
             q.setParameter(1, password);
             List result = q.list();
             Users tmpuser=(Users)result.get(0);
-            System.out.println(tmpuser.getFirstName());
+            
+            byte [] salt = tmpuser.getPasswordSalt().getBytes();
+            byte [] encpass = tmpuser.getUserPassword().getBytes();
+            authenticatePassword(password,encpass,salt);
+            
+            //System.out.println(tmpuser.getFirstName());
 
-            System.out.println("yyyyyyyy " + result.get(0));
+            //System.out.println("yyyyyyyy " + result.get(0));
 
             //q.setParameter(1, byteArrayToHexString(getEncryptedPassword(password, salt)));
 //            byte[] saltByte=hexStringtoByteArry();
@@ -164,8 +169,8 @@ public class UserHelper {
 
         SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
 
-        // Generate a 8 byte (64 bit) salt
-        byte[] salt = new byte[8];
+        // Generate a 16 byte (128 bit) salt
+        byte[] salt = new byte[16];
         random.nextBytes(salt);
 
         return salt;
@@ -177,14 +182,14 @@ public class UserHelper {
      * @param byteArray
      * @return
      */
-    public String byteArrayToHexString(byte[] byteArray) {
-        /*String returnString = "";
-        for (int i = 0; i < byteArray.length; i++) {
-            returnString += Integer.toHexString(Byte.toUnsignedInt(byteArray[i]));
-        }
-        return returnString;*/
-        return new String(byteArray);
-    }
+//    public String byteArrayToHexString(byte[] byteArray) {
+//        String returnString = "";
+//        for (int i = 0; i < byteArray.length; i++) {
+//            returnString += Integer.toHexString(Byte.toUnsignedInt(byteArray[i]));
+//        }
+//        return returnString;
+//        //return new String(byteArray);
+//    }
     public byte[] hexStringToByteArray(String hexString)
     {
         return hexString.getBytes();
