@@ -88,6 +88,8 @@ public class UserHelper {
             q.setParameter(0, username);
             q.setParameter(1, password);
             List result = q.list();
+            Users tmpuser=(Users)result.get(0);
+            System.out.println(tmpuser.getFirstName());
 
             System.out.println("yyyyyyyy " + result.get(0));
 
@@ -95,7 +97,7 @@ public class UserHelper {
 //            byte[] saltByte=hexStringtoByteArry();
 //            Users user = (Users) q.
 //            String pass = user.getUserPassword();
-            session.close();
+           // session.close();
         } catch (HibernateException e) {
             e.printStackTrace();
             try {
@@ -182,6 +184,7 @@ public class UserHelper {
         }
         return returnString;
     }
+    public 
 }
 
 //password reset
