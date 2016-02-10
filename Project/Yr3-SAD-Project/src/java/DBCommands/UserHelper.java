@@ -52,8 +52,8 @@ public class UserHelper {
             Query q = session.createSQLQuery("INSERT INTO `Users` (`UserId`, `UserName`, `UserPassword`,`passwordSalt`) VALUES (NULL,?,?,?)");
             byte[] salt = generateSalt();
             q.setParameter(0, userName);
-            q.setParameter(1, getEncryptedPassword(userPassword, salt));
-            q.setParameter(2,salt);
+            q.setParameter(1, byteArrayToHexString(getEncryptedPassword(userPassword, salt)));
+            q.setParameter(2,byteArrayToHexString(salt));
             //System.out.println("hello" + byteArrayToHexString(generateSalt()));
             int i = q.executeUpdate();
 
@@ -83,16 +83,15 @@ public class UserHelper {
     public boolean loginUser(String username, String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
         try {
             tx = session.beginTransaction();
-            SQLQuery q = session.createSQLQuery("Select* from Users where UserName =? and UserPassword =?");
+            SQLQuery q = session.createSQLQuery("Select UserName, UserPassword from Users where UserName =? and UserPassword =?");
             q.addEntity(Users.class);
             q.setParameter(0, username);
             q.setParameter(1, password);
             List result = q.list();
             Users tmpuser=(Users)result.get(0);
             
-            byte [] salt = tmpuser.getPasswordSalt().getBytes();
-            byte [] encpass = tmpuser.getUserPassword().getBytes();
-            authenticatePassword(password,encpass,salt);
+            System.out.println("tmpuser" + tmpuser);
+            
             
             //System.out.println(tmpuser.getFirstName());
 
@@ -182,14 +181,14 @@ public class UserHelper {
      * @param byteArray
      * @return
      */
-//    public String byteArrayToHexString(byte[] byteArray) {
-//        String returnString = "";
-//        for (int i = 0; i < byteArray.length; i++) {
-//            returnString += Integer.toHexString(Byte.toUnsignedInt(byteArray[i]));
-//        }
-//        return returnString;
-//        //return new String(byteArray);
-//    }
+    public String byteArrayToHexString(byte[] byteArray) {
+        String returnString = "";
+        for (int i = 0; i < byteArray.length; i++) {
+            returnString += Integer.toHexString(byteArray[i]);
+        }
+        return returnString;
+        //return new String(byteArray);
+    }
     public byte[] hexStringToByteArray(String hexString)
     {
         return hexString.getBytes();
