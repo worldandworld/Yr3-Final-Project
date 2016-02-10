@@ -42,35 +42,14 @@
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
+        <script>
+            function loadFile() {
+                alert('test');
 
-    </head>
-    <%
-        StringBuilder contentBuilder = new StringBuilder();
-        try {
-            BufferedReader in = new BufferedReader(new FileReader("./login1.html"));
-            String str;
-            while ((str = in.readLine()) != null) {
-                contentBuilder.append(str);
             }
-            in.close();
-        } catch (IOException e) {
-            contentBuilder.append(e.getMessage());
-        }
-        String content = contentBuilder.toString();
-        content = "<div class=box>" + content + "</div>";
-    %>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.5.1.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#container').load('./login1.html');
-        });
-    </script> 
+        </script>
+    </head>
     <body>
-        <div class="container">
-            <div id="container" class="box">
-                Test
-            </div>
-        </div>
         <div class="brand">Black White Financial Services</div>
         <div class="address-bar">46 Clanbrassil Street, Dundalk, Co Louth</div>
 
@@ -86,7 +65,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-                    <a class="navbar-brand" href="index.html">Business Casual</a>
+                    <a class="navbar-brand" href="Index.jsp">Business Casual</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -103,13 +82,21 @@
                         <li>
                             <a href="contact.html">Contact</a>
                         </li>
+                        <li>
+                            <a href="" onclick="loadFile()">Login | Register</a>
+                        </li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
             </div>
             <!-- /.container -->
         </nav>
-
+        <div class="container">
+            <div class="row"></div>
+            <div id="demo" classs ="box">
+                
+            </div>
+        </div>
         <div class="container">
 
             <div class="row">
@@ -211,14 +198,10 @@
 
         <!-- Script to Activate the Carousel -->
         <script>
-        $('.carousel').carousel({
-            interval: 5000 //changes the speed
-        });
+                                $('.carousel').carousel({
+                                    interval: 5000 //changes the speed
+                                });
         </script>
-        <script>
-            document.getElementById("container").innerHTML='<%=content%>'
-        </script>
-
 
     </body>
 
