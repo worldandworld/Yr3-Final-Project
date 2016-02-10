@@ -31,6 +31,13 @@
         <link href="css/styles.css" rel="stylesheet" type="text/css"/>
  <!-- Fonts -->
 
+<<<<<<< HEAD
+=======
+
+
+
+        <!-- Fonts -->
+>>>>>>> origin/master
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="./css/styles.css">
@@ -40,8 +47,13 @@
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
+<<<<<<< HEAD
        
         <script src="js/formslider.js" type="text/javascript"></script>
+=======
+        <script type="text/javascript" src="./js/formslider.js" defer async="async"></script>
+        
+>>>>>>> origin/master
         <script>
             function loadFile() {
                 var xhttp = new XMLHttpRequest();
@@ -76,24 +88,35 @@
                 xhttp.send();
 
             }
+<<<<<<< HEAD
            
            
     function reg() {
+=======
+            function home() {
+>>>>>>> origin/master
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
                     if (xhttp.readyState == 4 && xhttp.status == 200) {
                         document.getElementById("demo").innerHTML = xhttp.responseText;
                     }
                 };
+<<<<<<< HEAD
                 xhttp.open("GET", "registration1.html", true);
                 xhttp.send();
 
             }
            
             
+=======
+                xhttp.open("GET", "home.html", true);
+                xhttp.send();
+
+            }
+>>>>>>> origin/master
         </script>
     </head>
-    <body>
+    <body onload="home();">
         <div class="brand">Black White Financial Services</div>
         <div class="address-bar">46 Clanbrassil Street, Dundalk, Co Louth</div>
 
@@ -138,53 +161,6 @@
             <!-- /.container -->
         </nav>
         <div id="demo">
-            <div class="container">
-                <div class="row">
-                    <div class="box">
-                        <div class="col-lg-12 text-center">
-                            <div id="carousel-example-generic" class="carousel slide">
-                                <!-- Indicators -->
-                                <ol class="carousel-indicators hidden-xs">
-                                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                                </ol>
-
-                                <!-- Wrapper for slides -->
-                                <div class="carousel-inner">
-                                    <div class="item active">
-                                        <img class="img-responsive img-full" src="img/slide-1.jpg" alt="">
-                                    </div>
-                                    <div class="item">
-                                        <img class="img-responsive img-full" src="img/slide-2.jpg" alt="">
-                                    </div>
-                                    <div class="item">
-                                        <img class="img-responsive img-full" src="img/slide-3.jpg" alt="">
-                                    </div>
-                                </div>
-
-                                <!-- Controls -->
-                                <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                                    <span class="icon-prev"></span>
-                                </a>
-                                <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                                    <span class="icon-next"></span>
-                                </a>
-                            </div>
-                            <h2 class="brand-before">
-                                <small>Welcome to</small>
-                            </h2>
-                            <h1 class="brand-name">Business Casual</h1>
-                            <hr class="tagline-divider">
-                            <h2>
-                                <small>By
-                                    <strong>Start Bootstrap</strong>
-                                </small>
-                            </h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <!-- /.container -->
         </div>
 

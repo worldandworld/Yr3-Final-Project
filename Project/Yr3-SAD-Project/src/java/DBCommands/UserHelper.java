@@ -5,15 +5,18 @@
  */
 package DBCommands;
 
+import TablesDto.Users;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.util.Arrays;
+import java.util.List;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -27,7 +30,7 @@ public class UserHelper {
     Transaction tx = null;
 
     /**
-     *This is the user command class
+     * This is the user command class
      */
     public UserHelper() {
         this.session = HibernateUtil.getSessionFactory().openSession();
@@ -47,13 +50,13 @@ public class UserHelper {
         try {
             tx = session.beginTransaction();
             Query q = session.createSQLQuery("INSERT INTO `Users` (`UserId`, `UserName`, `UserPassword`,`passwordSalt`) VALUES (NULL,?,?,?)");
-            byte [] salt = generateSalt();
+            byte[] salt = generateSalt();
             q.setParameter(0, userName);
-            q.setParameter(1, byteArrayToHexString(getEncryptedPassword(userPassword,salt)));
-            q.setParameter(2, byteArrayToHexString(salt));
+            q.setParameter(1, getEncryptedPassword(userPassword, salt));
+            q.setParameter(2,salt);
             //System.out.println("hello" + byteArrayToHexString(generateSalt()));
             int i = q.executeUpdate();
-           
+
             if (i > 0) {
                 System.out.println("Insert sucessfull");
                 tx.commit();
@@ -62,6 +65,46 @@ public class UserHelper {
 
             session.close();
         } catch (NoSuchAlgorithmException | InvalidKeySpecException | HibernateException e) {
+            try {
+                tx.rollback();
+            } catch (RuntimeException r) {
+                System.out.println("Can't rollback transaction");
+
+            }
+            throw e;
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return false;
+    }
+
+    public boolean loginUser(String username, String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
+        try {
+            tx = session.beginTransaction();
+            SQLQuery q = session.createSQLQuery("Select* from Users where UserName =? and UserPassword =?");
+            q.addEntity(Users.class);
+            q.setParameter(0, username);
+            q.setParameter(1, password);
+            List result = q.list();
+            Users tmpuser=(Users)result.get(0);
+            
+            byte [] salt = tmpuser.getPasswordSalt().getBytes();
+            byte [] encpass = tmpuser.getUserPassword().getBytes();
+            authenticatePassword(password,encpass,salt);
+            
+            //System.out.println(tmpuser.getFirstName());
+
+            //System.out.println("yyyyyyyy " + result.get(0));
+
+            //q.setParameter(1, byteArrayToHexString(getEncryptedPassword(password, salt)));
+//            byte[] saltByte=hexStringtoByteArry();
+//            Users user = (Users) q.
+//            String pass = user.getUserPassword();
+           // session.close();
+        } catch (HibernateException e) {
+            e.printStackTrace();
             try {
                 tx.rollback();
             } catch (RuntimeException r) {
@@ -120,15 +163,14 @@ public class UserHelper {
 
     /**
      *
-     * @return
-     * @throws NoSuchAlgorithmException
+     * @return @throws NoSuchAlgorithmException
      */
     public byte[] generateSalt() throws NoSuchAlgorithmException {
 
         SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
 
-        // Generate a 8 byte (64 bit) salt
-        byte[] salt = new byte[8];
+        // Generate a 16 byte (128 bit) salt
+        byte[] salt = new byte[16];
         random.nextBytes(salt);
 
         return salt;
@@ -136,19 +178,22 @@ public class UserHelper {
     }
 
     /**
-     * 
+     *
      * @param byteArray
      * @return
      */
-    public String byteArrayToHexString(byte[] byteArray)
-{
-    String returnString="";
-    for(int i=0;i<byteArray.length;i++)
+//    public String byteArrayToHexString(byte[] byteArray) {
+//        String returnString = "";
+//        for (int i = 0; i < byteArray.length; i++) {
+//            returnString += Integer.toHexString(Byte.toUnsignedInt(byteArray[i]));
+//        }
+//        return returnString;
+//        //return new String(byteArray);
+//    }
+    public byte[] hexStringToByteArray(String hexString)
     {
-        returnString+=Integer.toHexString(Byte.toUnsignedInt(byteArray[i]));
+        return hexString.getBytes();
     }
-    return returnString;
-}
 }
 
 //password reset
