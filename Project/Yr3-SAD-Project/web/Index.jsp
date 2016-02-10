@@ -31,13 +31,11 @@
         <link href="css/styles.css" rel="stylesheet" type="text/css"/>
  <!-- Fonts -->
 
-<<<<<<< HEAD
-=======
 
 
 
         <!-- Fonts -->
->>>>>>> origin/master
+
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="./css/styles.css">
@@ -47,13 +45,11 @@
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-<<<<<<< HEAD
        
         <script src="js/formslider.js" type="text/javascript"></script>
-=======
+
         <script type="text/javascript" src="./js/formslider.js" defer async="async"></script>
-        
->>>>>>> origin/master
+
         <script>
             function loadFile() {
                 var xhttp = new XMLHttpRequest();
@@ -88,32 +84,39 @@
                 xhttp.send();
 
             }
-<<<<<<< HEAD
+
            
            
     function reg() {
-=======
-            function home() {
->>>>>>> origin/master
-                var xhttp = new XMLHttpRequest();
+
+               var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
                     if (xhttp.readyState == 4 && xhttp.status == 200) {
                         document.getElementById("demo").innerHTML = xhttp.responseText;
                     }
                 };
-<<<<<<< HEAD
+
                 xhttp.open("GET", "registration1.html", true);
                 xhttp.send();
 
             }
-           
-            
-=======
-                xhttp.open("GET", "home.html", true);
+       
+    
+    function home() {
+
+               var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (xhttp.readyState == 4 && xhttp.status == 200) {
+                        document.getElementById("demo").innerHTML = xhttp.responseText;
+                    }
+                };
+
+                    xhttp.open("GET", "home.html", true);
                 xhttp.send();
 
             }
->>>>>>> origin/master
+            
+          
         </script>
     </head>
     <body onload="home();">
@@ -171,19 +174,19 @@
                     <p>Copyright &copy; Your Website 2014</p>
                      <ul class="list-inline">
                         <li>
-                            <a href="#" >Home</a>
+                            <a href="" >Home</a>
                         </li>
                         <li class="footer-menu-divider">&sdot;</li>
                         <li>
-                            <a href="about.html" onclick="about(); return false; ">About</a>
+                            <a href="" onclick="about(); return false; ">About</a>
                         </li>
                         <li class="footer-menu-divider">&sdot;</li>
                         <li>
-                            <a href="blog.html">Services</a>
+                            <a href="">Services</a>
                         </li>
                         <li class="footer-menu-divider">&sdot;</li>
                         <li>
-                            <a href="contact.html" onclick="contact(); return false;">Contact</a>
+                            <a href="" onclick="contact(); return false;">Contact</a>
                         </li>
                     </ul>
                 </div>
