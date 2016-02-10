@@ -11,7 +11,7 @@ public class Users  implements java.io.Serializable {
 
      private Integer userId;
      private String userName;
-     private boolean userNameVerified;
+     private boolean userNameVerified=false;
      private String userPassword;
      private String firstName;
      private String middleName;
@@ -27,10 +27,10 @@ public class Users  implements java.io.Serializable {
      private String addressProofType;
      private String idref;
      private String addressRef;
-     private Boolean idVirified;
+     private boolean idVirified=false;
      private int userType;
      private int overDraftLimit;
-     private Boolean stayanonymous;
+     private boolean stayanonymous=false;
      private String anonymusName;
      private String passwordSalt;
 
@@ -52,7 +52,7 @@ public class Users  implements java.io.Serializable {
         this.overDraftLimit = overDraftLimit;
         this.passwordSalt = passwordSalt;
     }
-    public Users(String userName, boolean userNameVerified, String userPassword, String firstName, String middleName, String lastName, String address, String town, String state, String country, String postCode, String phone1, String phone2, String idtype, String addressProofType, String idref, String addressRef, Boolean idVirified, int userType, int overDraftLimit, Boolean stayanonymous, String anonymusName, String passwordSalt) {
+    public Users(String userName, boolean userNameVerified, String userPassword, String firstName, String middleName, String lastName, String address, String town, String state, String country, String postCode, String phone1, String phone2, String idtype, String addressProofType, String idref, String addressRef, boolean idVirified, int userType, int overDraftLimit, boolean stayanonymous, String anonymusName, String passwordSalt) {
        this.userName = userName;
        this.userNameVerified = userNameVerified;
        this.userPassword = userPassword;
@@ -204,11 +204,11 @@ public class Users  implements java.io.Serializable {
     public void setAddressRef(String addressRef) {
         this.addressRef = addressRef;
     }
-    public Boolean getIdVirified() {
+    public boolean getIdVirified() {
         return this.idVirified;
     }
     
-    public void setIdVirified(Boolean idVirified) {
+    public void setIdVirified(boolean idVirified) {
         this.idVirified = idVirified;
     }
     public int getUserType() {
@@ -225,11 +225,11 @@ public class Users  implements java.io.Serializable {
     public void setOverDraftLimit(int overDraftLimit) {
         this.overDraftLimit = overDraftLimit;
     }
-    public Boolean getStayanonymous() {
+    public boolean getStayanonymous() {
         return this.stayanonymous;
     }
     
-    public void setStayanonymous(Boolean stayanonymous) {
+    public void setStayanonymous(boolean stayanonymous) {
         this.stayanonymous = stayanonymous;
     }
     public String getAnonymusName() {
@@ -249,7 +249,7 @@ public class Users  implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "Users{" + "userId=" + userId + ", userName=" + userName + ", userNameVerified=" + userNameVerified + ", userPassword=" + userPassword + ", firstName=" + firstName + ", middleName=" + middleName + ", lastName=" + lastName + ", address=" + address + ", town=" + town + ", state=" + state + ", country=" + country + ", postCode=" + postCode + ", phone1=" + phone1 + ", phone2=" + phone2 + ", idtype=" + idtype + ", addressProofType=" + addressProofType + ", idref=" + idref + ", addressRef=" + addressRef + ", idVirified=" + idVirified + ", userType=" + userType + ", overDraftLimit=" + overDraftLimit + ", stayanonymous=" + stayanonymous + ", anonymusName=" + anonymusName + ", passwordSalt=" + passwordSalt + '}';
+        return "Users{" + "userId=" + userId + ", userName=" + userName + ", userNameVerified=" + ", userPassword=" + userPassword + ", firstName=" + firstName + ", middleName=" + middleName + ", lastName=" + lastName + ", address=" + address + ", town=" + town + ", state=" + state + ", country=" + country + ", postCode=" + postCode + ", phone1=" + phone1 + ", phone2=" + phone2 + ", idtype=" + idtype + ", addressProofType=" + addressProofType + ", idref=" + idref + ", addressRef=" + addressRef + ", idVirified=" + idVirified + ", userType=" + userType + ", overDraftLimit=" + overDraftLimit + ", stayanonymous=" + stayanonymous + ", anonymusName=" + anonymusName + ", passwordSalt=" + passwordSalt + '}';
     }
 
 
