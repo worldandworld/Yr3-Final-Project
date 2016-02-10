@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 10, 2016 3:20:32 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="TableDtos.Chitties" table="Chitties" catalog="accounting" optimistic-lock="version">
+        <id name="chittyId" type="java.lang.Integer">
+            <column name="ChittyID" />
+            <generator class="identity" />
+        </id>
+        <property name="chittyName" type="string">
+            <column name="ChittyName" length="45" not-null="true" />
+        </property>
+        <property name="chittyStatus" type="int">
+            <column name="ChittyStatus" not-null="true">
+                <comment>01 Not Started, 01 Active, 02 Closed</comment>
+            </column>
+        </property>
+        <property name="openingDate" type="timestamp">
+            <column name="OpeningDate" length="19" not-null="true" />
+        </property>
+        <property name="closingDate" type="timestamp">
+            <column name="ClosingDate" length="19" not-null="true" />
+        </property>
+        <property name="term" type="int">
+            <column name="Term" not-null="true">
+                <comment>The number of times the auction or similar activity occurs</comment>
+            </column>
+        </property>
+        <property name="termUnit" type="int">
+            <column name="TermUnit" not-null="true">
+                <comment>Like Monthly, Weekly, Daily etc</comment>
+            </column>
+        </property>
+        <property name="remainingTerm" type="int">
+            <column name="RemainingTerm" not-null="true">
+                <comment>Number of terms left to complete the chitty</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

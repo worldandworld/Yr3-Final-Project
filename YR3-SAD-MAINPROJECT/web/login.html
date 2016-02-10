@@ -1,15 +1,28 @@
 <div class="container">
-   
     <div class="row">
         <div class="box">
                 <div id="w">
-                    <h1>Register</h1>
+                    <h1>Login or Register</h1>
 
                     <div id="page">
-                     
+                        <div id="content-login">
+                            <h2>Login to the Site</h2>
+                            <div class="content">
+                                <a href="#" class="slidelink" id="showregister">Don't Have An Account? &rarr;</a>
+                                <form id="login" name="login" action="#" method="post">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" name="email" id="email" class="txtfield" tabindex="1" autocomplete="off">
+
+                                    <label for="password">Password</label>
+                                    <input type="password" name="password" id="password" class="txtfield" tabindex="2" autocomplete="off">
+
+                                    <input type="submit" name="loginbtn" id="loginbtn" value="Login" class="btn" tabindex="3">
+                                </form>
+                            </div>
+                        </div><!-- /end #content-login -->
 
 
-                       <div id="content-login">
+                        <div id="content-register">
                             <h2>Register a New Account</h2>
                             <div class="content">
                                 <a href="#" class="leftsidelink" id="showlogin">&larr; Already Have an Account? Login Now!</a>

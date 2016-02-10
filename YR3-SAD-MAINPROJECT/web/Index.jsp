@@ -6,7 +6,6 @@
 <%@page import="java.io.FileReader"%>
 <%@page import="java.io.IOException"%>
 <%@page import="java.io.BufferedReader"%>
-<%@page import="TablesDto.Users"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -29,27 +28,10 @@
         <link href="css/business-casual.css" rel="stylesheet">
         <link rel="stylesheet" href="css/normalize.css">
 
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
-
-
-
-        <!-- Fonts -->
-<<<<<<< Updated upstream
-
-=======
->>>>>>> origin/master
-=======
 
         <link rel="stylesheet" href="css/style.css">
 
         <!-- Fonts -->
->>>>>>> parent of 77dd1e1... ajax
->>>>>>> Stashed changes
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="./css/styles.css">
@@ -59,40 +41,23 @@
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> Stashed changes
-       
-        <script src="js/formslider.js" type="text/javascript"></script>
-
-        <script type="text/javascript" src="./js/formslider.js" defer async="async"></script>
-<<<<<<< Updated upstream
-
-=======
-        
->>>>>>> origin/master
-=======
         <script type="text/javascript" src="./js/formslider.js"></script>
->>>>>>> parent of 77dd1e1... ajax
->>>>>>> Stashed changes
         <script>
             function loadFile() {
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
-                    if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    if (xhttp.readyState === 4 && xhttp.status === 200) {
                         document.getElementById("demo").innerHTML = xhttp.responseText;
                     }
                 };
-                xhttp.open("GET", "login2.html", true);
+                xhttp.open("GET", "login.html", true);
                 xhttp.send();
 
             }
             function about() {
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
-                    if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    if (xhttp.readyState === 4 && xhttp.status === 200) {
                         document.getElementById("demo").innerHTML = xhttp.responseText;
                     }
                 };
@@ -103,7 +68,7 @@
             function contact() {
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
-                    if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    if (xhttp.readyState === 4 && xhttp.status === 200) {
                         document.getElementById("demo").innerHTML = xhttp.responseText;
                     }
                 };
@@ -111,53 +76,9 @@
                 xhttp.send();
 
             }
-<<<<<<< Updated upstream
-
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> Stashed changes
-           
-           
-    function reg() {
-
-               var xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function () {
-                    if (xhttp.readyState == 4 && xhttp.status == 200) {
-                        document.getElementById("demo").innerHTML = xhttp.responseText;
-                    }
-                };
-
-                xhttp.open("GET", "registration1.html", true);
-                xhttp.send();
-
-            }
-       
-    
-    function home() {
-
-               var xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function () {
-                    if (xhttp.readyState == 4 && xhttp.status == 200) {
-                        document.getElementById("demo").innerHTML = xhttp.responseText;
-                    }
-                };
-
-                    xhttp.open("GET", "home.html", true);
-                xhttp.send();
-
-            }
-<<<<<<< Updated upstream
-            
-          
-=======
->>>>>>> origin/master
-=======
->>>>>>> parent of 77dd1e1... ajax
->>>>>>> Stashed changes
         </script>
     </head>
-    <body onload="home();">
+    <body>
         <div class="brand">Black White Financial Services</div>
         <div class="address-bar">46 Clanbrassil Street, Dundalk, Co Louth</div>
 
@@ -198,40 +119,63 @@
             <!-- /.container -->
         </nav>
         <div id="demo">
+            <div class="container">
+                <div class="row">
+                    <div class="box">
+                        <div class="col-lg-12 text-center">
+                            <div id="carousel-example-generic" class="carousel slide">
+                                <!-- Indicators -->
+                                <ol class="carousel-indicators hidden-xs">
+                                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                                </ol>
+
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner">
+                                    <div class="item active">
+                                        <img class="img-responsive img-full" src="img/slide-1.jpg" alt="">
+                                    </div>
+                                    <div class="item">
+                                        <img class="img-responsive img-full" src="img/slide-2.jpg" alt="">
+                                    </div>
+                                    <div class="item">
+                                        <img class="img-responsive img-full" src="img/slide-3.jpg" alt="">
+                                    </div>
+                                </div>
+
+                                <!-- Controls -->
+                                <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                    <span class="icon-prev"></span>
+                                </a>
+                                <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                                    <span class="icon-next"></span>
+                                </a>
+                            </div>
+                            <h2 class="brand-before">
+                                <small>Welcome to</small>
+                            </h2>
+                            <h1 class="brand-name">Business Casual</h1>
+                            <hr class="tagline-divider">
+                            <h2>
+                                <small>By
+                                    <strong>Start Bootstrap</strong>
+                                </small>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- /.container -->
         </div>
 
             <footer>
-<<<<<<< Updated upstream
-               <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <p>Copyright &copy; Your Website 2014</p>
-                     <ul class="list-inline">
-                        <li>
-                            <a href="" >Home</a>
-                        </li>
-                        <li class="footer-menu-divider">&sdot;</li>
-                        <li>
-                            <a href="" onclick="about(); return false; ">About</a>
-                        </li>
-                        <li class="footer-menu-divider">&sdot;</li>
-                        <li>
-                            <a href="">Services</a>
-                        </li>
-                        <li class="footer-menu-divider">&sdot;</li>
-                        <li>
-                            <a href="" onclick="contact(); return false;">Contact</a>
-                        </li>
-                    </ul>
-=======
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12 text-center">
                             <p>Copyright &copy; Your Website 2014</p>
                         </div>
                     </div>
->>>>>>> Stashed changes
                 </div>
             </footer>
 
