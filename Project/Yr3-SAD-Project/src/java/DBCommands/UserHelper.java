@@ -24,7 +24,7 @@ import org.hibernate.Transaction;
  *
  * @author Abdul
  */
-public class UserHelper {
+public class UserHelper implements UserHelperInterface {
 
     Session session = null;
     Transaction tx = null;
