@@ -5,6 +5,8 @@
  */
 package Servlets;
 
+import Command.Command;
+import Command.RegisterUserCommand;
 import DBCommands.UserHelper;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -42,11 +44,16 @@ public class DbActionServlet extends HttpServlet {
         /*String file = "/Index.jsp";
         RequestDispatcher disp = getServletContext().getRequestDispatcher(file);
         disp.forward(request, response);*/
-        String file = "/Index.jsp";
+        
+        
+        /*String file = "/Index.jsp";
         String name = request.getParameter("userName");
-        String password = request.getParameter("userPassword");
+        String password = request.getParameter("userPassword");*/
         if (request.getParameter("action").equalsIgnoreCase("register")) {
-            if (name != null && !name.isEmpty() && password != null && !password.isEmpty()) {
+            
+            Command cmd = new RegisterUserCommand();
+            cmd.execute(request, response);
+            /*if (name != null && !name.isEmpty() && password != null && !password.isEmpty()) {
                 UserHelper helper = new UserHelper();
                 boolean u = helper.registerUser(name, password);
                 HttpSession session = request.getSession(true);
@@ -56,7 +63,7 @@ public class DbActionServlet extends HttpServlet {
 
             } else {
                 response.sendRedirect(file);
-            }
+            }*/
 
         } else {
 
