@@ -85,11 +85,15 @@ public class UserHelper implements UserHelperInterface {
         try {
             tx = session.beginTransaction();
             SQLQuery q = session.createSQLQuery("Select UserName, UserPassword from Users where UserName =? and UserPassword =?");
-            q.addEntity(Users.class);
+            //q.addEntity(Users.class);
             q.setParameter(0, username);
             q.setParameter(1, password);
             List result = q.list();
             Users tmpuser=(Users)result.get(0);
+            
+            
+           
+            
             
             System.out.println("tmpuser" + tmpuser);
             
