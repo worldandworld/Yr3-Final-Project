@@ -26,7 +26,7 @@ public class UserAssist {
                 return true;
             }
         }catch(NoSuchAlgorithmException | InvalidKeySpecException e){
-            System.out.println("Exception Occured in the UserAssist Class in login method");
+            System.out.println("Exception Occured in the UserAssist Class in login() method");
         }
         return false;
     }
@@ -40,7 +40,7 @@ public class UserAssist {
                 return true;
             }
         }catch(NoSuchAlgorithmException | InvalidKeySpecException e){
-            System.out.println("Exception Occured in the UserAssist Class in login method");
+            System.out.println("Exception Occured in the UserAssist Class in register() method");
         }
         return false;
     }

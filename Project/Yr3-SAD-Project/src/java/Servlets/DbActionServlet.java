@@ -41,29 +41,13 @@ public class DbActionServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, NoSuchAlgorithmException, InvalidKeySpecException {
-        /*String file = "/Index.jsp";
-        RequestDispatcher disp = getServletContext().getRequestDispatcher(file);
-        disp.forward(request, response);*/
-        
-        
-        /*String file = "/Index.jsp";
-        String name = request.getParameter("userName");
-        String password = request.getParameter("userPassword");*/
+
+        /*String file = "/Index.jsp";*/
+
         if (request.getParameter("action").equalsIgnoreCase("register")) {
             
             Command cmd = new RegisterUserCommand();
             cmd.execute(request, response);
-            /*if (name != null && !name.isEmpty() && password != null && !password.isEmpty()) {
-                UserHelper helper = new UserHelper();
-                boolean u = helper.registerUser(name, password);
-                HttpSession session = request.getSession(true);
-                session.setAttribute("user", u);
-
-                response.sendRedirect("Index.jsp");
-
-            } else {
-                response.sendRedirect(file);
-            }*/
 
         } else {
 

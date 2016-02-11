@@ -33,7 +33,7 @@ public class UserHelper implements UserHelperInterface {
      * This is the user command class
      */
     public UserHelper() {
-        this.session = HibernateUtil.getSessionFactory().openSession();
+        this.session = HibernateUtil.getSessionFactory().openSession(); // creating session to access the database
     }
 
     /**
@@ -45,6 +45,7 @@ public class UserHelper implements UserHelperInterface {
      * @throws java.security.NoSuchAlgorithmException
      * @throws java.security.spec.InvalidKeySpecException
      */
+    @Override
     public boolean registerUser(String userName, String userPassword) throws NoSuchAlgorithmException, InvalidKeySpecException {
 
         try {
@@ -80,6 +81,7 @@ public class UserHelper implements UserHelperInterface {
         return false;
     }
 
+    @Override
     public boolean loginUser(String username, String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
         try {
             tx = session.beginTransaction();
