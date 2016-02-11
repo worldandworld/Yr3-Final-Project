@@ -26,10 +26,15 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Custom CSS -->
-        <link href="css/business-casual.css" rel="stylesheet">
-       <!-- <link rel="stylesheet" href="css/normalize.css">-->
+        
+        <!-- <link rel="stylesheet" href="css/normalize.css">-->
         <link href="css/styles.css" rel="stylesheet" type="text/css"/>
- <!-- Fonts -->
+        <link rel="stylesheet" href="css/normalize.css">
+        <link href="css/business-casual.css" rel="stylesheet">
+
+
+        <link rel="stylesheet" href="css/styles.css">
+        <!-- Fonts -->
 
 
 
@@ -45,7 +50,7 @@
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-       
+
         <script src="js/formslider.js" type="text/javascript"></script>
 
         <script type="text/javascript" src="./js/formslider.js" defer async="async"></script>
@@ -85,11 +90,11 @@
 
             }
 
-           
-           
-    function reg() {
 
-               var xhttp = new XMLHttpRequest();
+
+            function reg() {
+
+                var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
                     if (xhttp.readyState == 4 && xhttp.status == 200) {
                         document.getElementById("demo").innerHTML = xhttp.responseText;
@@ -100,23 +105,23 @@
                 xhttp.send();
 
             }
-       
-    
-    function home() {
 
-               var xhttp = new XMLHttpRequest();
+
+            function home() {
+
+                var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
                     if (xhttp.readyState == 4 && xhttp.status == 200) {
                         document.getElementById("demo").innerHTML = xhttp.responseText;
                     }
                 };
 
-                    xhttp.open("GET", "home.html", true);
+                xhttp.open("GET", "home.html", true);
                 xhttp.send();
 
             }
-            
-          
+
+
         </script>
     </head>
     <body onload="home();">
@@ -144,20 +149,21 @@
                             <a href="">Home</a>
                         </li>
                         <li>
-                            <a href="" onclick="about(); return false;">About</a>
+                            <a href="" onclick="about();
+                                    return false;">About</a>
                         </li>
                         <li>
                             <a href="" onclick="contact(); return false;">Contact</a>
                         </li>
                     </ul>
-                        <ul class="nav navbar-nav navbar-right"	>
+                    <ul class="nav navbar-nav navbar-right"	>
                         <li >
                             <a href="" onclick="loadFile();
                                     return false;">Login | Register </a>
                         </li>
-                        
-                        </ul>
-                
+
+                    </ul>
+
                 </div>
                 <!-- /.navbar-collapse -->
             </div>
@@ -167,46 +173,46 @@
             <!-- /.container -->
         </div>
 
-            <footer>
-               <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <p>Copyright &copy; Your Website 2014</p>
-                     <ul class="list-inline">
-                        <li>
-                            <a href="" >Home</a>
-                        </li>
-                        <li class="footer-menu-divider">&sdot;</li>
-                        <li>
-                            <a href="" onclick="about(); return false; ">About</a>
-                        </li>
-                        <li class="footer-menu-divider">&sdot;</li>
-                        <li>
-                            <a href="">Services</a>
-                        </li>
-                        <li class="footer-menu-divider">&sdot;</li>
-                        <li>
-                            <a href="" onclick="contact(); return false;">Contact</a>
-                        </li>
-                    </ul>
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <p>Copyright &copy; Your Website 2014</p>
+                        <ul class="list-inline">
+                            <li>
+                                <a href="" >Home</a>
+                            </li>
+                            <li class="footer-menu-divider">&sdot;</li>
+                            <li>
+                                <a href="" onclick="about(); return false;">About</a>
+                            </li>
+                            <li class="footer-menu-divider">&sdot;</li>
+                            <li>
+                                <a href="">Services</a>
+                            </li>
+                            <li class="footer-menu-divider">&sdot;</li>
+                            <li>
+                                <a href="" onclick="contact(); return false;">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-            </footer>
+        </footer>
 
-            <!-- jQuery -->
-            <script src="js/jquery.js"></script>
-            <script src="js/index.js"></script>
-          
-            <!-- Bootstrap Core JavaScript -->
-            <script src="js/bootstrap.min.js"></script>
+        <!-- jQuery -->
+        <script src="js/jquery.js"></script>
+        <script src="js/index.js"></script>
 
-            <!-- Script to Activate the Carousel -->
-            <script>
-                                $('.carousel').carousel({
-                                    interval: 5000 //changes the speed
-                                });
-            </script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
+
+        <!-- Script to Activate the Carousel -->
+        <script>
+                                    $('.carousel').carousel({
+                                        interval: 5000 //changes the speed
+                                    });
+        </script>
 
     </body>
 
