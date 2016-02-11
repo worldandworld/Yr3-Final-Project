@@ -1,0 +1,28 @@
+Scrumwise User stories --> Sprint --> Release.
+
+Setup GitHub --> repositories --> commits --sync.
+
+used workbench to create database.
+
+Bootstrap for Mobile first GUI.
+
+Home Page as jsp with AJAX.
+
+Hibernate to communicate with database
+Hibernate sessions to connect and process DBMS transactions.
+
+Servelts to handle HTTP Sessions
+
+Command interface and commandClasses to handle Servlet functions.
+
+PBKDF2 password hashing using Secure Random Byte Array of 128 bits(16 Bytes) Salt 
+and Store hashed password and salt in separate fields in database after converting to Hex String.
+
+
+ 
+Junit testings
+Selenium for testing
+
+Use direct save from dto to database using hibernate
+Hibernate Query using direct class objects.
+Factory commands to associate with Servlet

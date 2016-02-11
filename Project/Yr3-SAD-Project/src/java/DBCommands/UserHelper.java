@@ -55,7 +55,6 @@ public class UserHelper implements UserHelperInterface {
             q.setParameter(0, userName);
             q.setParameter(1, byteArrayToHexString(getEncryptedPassword(userPassword, salt)));
             q.setParameter(2,byteArrayToHexString(salt));
-            //System.out.println("hello" + byteArrayToHexString(generateSalt()));
             int i = q.executeUpdate();
 
             if (i > 0) {
