@@ -22,9 +22,9 @@ import javax.servlet.http.HttpSession;
 public class RegisterUserCommand implements Command {
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
+    public int execute(HttpServletRequest request, HttpServletResponse response) {
         String file = "/Index.jsp";
-        
+
         String name = request.getParameter("userName");
         String password = request.getParameter("userPassword");
 
@@ -33,20 +33,22 @@ public class RegisterUserCommand implements Command {
             try {
                 UserAssist userSt = new UserAssist();
                 boolean userRegistered = userSt.register(name, password);
+                HttpSession session = request.getSession(true);
                 if (userRegistered) {
-                    HttpSession session = request.getSession(true);
+
                     session.setAttribute("user", userRegistered);
-                    
-                    response.sendRedirect("login.html");
-                    
+                    return 0;
+
                 } else {
-                    response.sendRedirect("index.jsp");
+                    session.setAttribute("user", userRegistered);
+                    return 1;
                 }
-            } catch (NoSuchAlgorithmException | InvalidKeySpecException | IOException ex) {
+            } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
                 Logger.getLogger(RegisterUserCommand.class.getName()).log(Level.SEVERE, null, ex);
+                return -1;
             }
 
         }
-        return file;
+        return -2;
     }
 }

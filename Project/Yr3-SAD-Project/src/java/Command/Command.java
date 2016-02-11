@@ -13,6 +13,6 @@ import javax.servlet.http.HttpServletResponse;
  * @author Abdul
  */
 public interface Command {
-       public String execute(HttpServletRequest request, HttpServletResponse response);
+       public int execute(HttpServletRequest request, HttpServletResponse response);
  
 }

@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
 public class LoginUserCommand implements Command {
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
+    public int execute(HttpServletRequest request, HttpServletResponse response) {
         String forwardToJsp = "login.html";
 
         //The user wants to log in...
@@ -40,9 +40,9 @@ public class LoginUserCommand implements Command {
                     session.setAttribute("loggedSessionId", clientSessionId);
                     session.setAttribute("user", userLoggingIn);
                     
-                    forwardToJsp = "index.jsp";
+                    return 0;
                 } else {
-                    forwardToJsp = "login.jsp";
+                    return 1;
                 }
             } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
                 Logger.getLogger(LoginUserCommand.class.getName()).log(Level.SEVERE, null, ex);
@@ -51,6 +51,6 @@ public class LoginUserCommand implements Command {
             forwardToJsp = "login.html";
         }
 
-        return forwardToJsp;
+       return -1;
     }
 }

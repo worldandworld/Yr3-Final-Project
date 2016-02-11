@@ -45,10 +45,18 @@ public class DbActionServlet extends HttpServlet {
         if (request.getParameter("action").equalsIgnoreCase("register")) {
 
             Command cmd = new RegisterUserCommand();
-            cmd.execute(request, response);
+            int status=cmd.execute(request, response);
+            if(status==0)
+            {
+                file="ProcessSuccess.jsp";
+            }
         } else if (request.getParameter("action").equalsIgnoreCase("login")) {
             Command cmd = new LoginUserCommand();
-            cmd.execute(request, response);
+            int status=cmd.execute(request, response);
+            if(status==0)
+            {
+                  file="ProcessSuccess.jsp";
+            }
         }
         response.sendRedirect(file);
     }

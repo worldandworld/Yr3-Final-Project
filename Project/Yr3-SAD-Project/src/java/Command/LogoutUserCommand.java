@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 public class LogoutUserCommand implements Command{
     
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) 
+    public int execute(HttpServletRequest request, HttpServletResponse response) 
     {
         // Get the session object and invalidate it - this removes all data stored up to now 
         // (resets it to blank)
@@ -26,6 +26,6 @@ public class LogoutUserCommand implements Command{
         // Send the user back to the login page
         String forwardToJsp = "index.jsp";
         
-        return forwardToJsp;
+        return 0;
     }
 }
