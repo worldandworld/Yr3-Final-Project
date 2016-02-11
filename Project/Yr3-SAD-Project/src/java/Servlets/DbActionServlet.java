@@ -6,6 +6,7 @@
 package Servlets;
 
 import Command.Command;
+import Command.LoginUserCommand;
 import Command.RegisterUserCommand;
 import DBCommands.UserHelper;
 import java.io.IOException;
@@ -42,29 +43,17 @@ public class DbActionServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, NoSuchAlgorithmException, InvalidKeySpecException {
 
-        /*String file = "/Index.jsp";*/
+        String file = "failedProcess.jsp";
 
         if (request.getParameter("action").equalsIgnoreCase("register")) {
-            
+
             Command cmd = new RegisterUserCommand();
             cmd.execute(request, response);
-
-        } else {
-
-            try (PrintWriter out = response.getWriter()) {
-                /* TODO output your page here. You may use following sample code. */
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<title>Servlet DbActionServlet</title>");
-                out.println("</head>");
-                out.println("<body>");
-                out.println("<h1>Servlet DbActionServlet at " + request.getContextPath() + "</h1>");
-                out.println("</body>");
-                out.println("</html>");
-            }
+        } else if (request.getParameter("action").equalsIgnoreCase("login")) {
+            Command cmd = new LoginUserCommand();
+            cmd.execute(request, response);
         }
-
+        response.sendRedirect(file);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

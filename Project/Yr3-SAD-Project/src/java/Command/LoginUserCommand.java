@@ -27,7 +27,7 @@ public class LoginUserCommand implements Command {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        if (username != null && password != null) {
+        if (username != null && !username.isEmpty() && password != null && !password.isEmpty()) {
             try {
                 //Use the UserAssist class to login...
                 UserAssist userSt = new UserAssist();
