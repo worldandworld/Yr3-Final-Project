@@ -30,4 +30,18 @@ public class UserAssist {
         }
         return false;
     }
+    
+       public boolean register(String username, String password) throws NoSuchAlgorithmException, InvalidKeySpecException{
+        boolean u = false;
+        try{
+            UserHelper help = new UserHelper();
+            u = help.registerUser(username, password);
+            if(u){
+                return true;
+            }
+        }catch(NoSuchAlgorithmException | InvalidKeySpecException e){
+            System.out.println("Exception Occured in the UserAssist Class in login method");
+        }
+        return false;
+    }
 }
