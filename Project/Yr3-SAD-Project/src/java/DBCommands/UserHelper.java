@@ -54,7 +54,7 @@ public class UserHelper implements UserHelperInterface {
             byte[] salt = generateSalt();
             q.setParameter(0, userName);
             q.setParameter(1, byteArrayToHexString(getEncryptedPassword(userPassword, salt)));
-            q.setParameter(2,byteArrayToHexString(salt));
+            q.setParameter(2, byteArrayToHexString(salt));
             int i = q.executeUpdate();
 
             if (i > 0) {
@@ -84,29 +84,27 @@ public class UserHelper implements UserHelperInterface {
     public boolean loginUser(String username, String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
         try {
             tx = session.beginTransaction();
-            SQLQuery q = session.createSQLQuery("Select UserName, UserPassword from Users where UserName =? and UserPassword =?");
-            //q.addEntity(Users.class);
-            q.setParameter(0, username);
-            q.setParameter(1, password);
-            List result = q.list();
-            Users tmpuser=(Users)result.get(0);
-            
-            
-           
-            
-            
-            System.out.println("tmpuser" + tmpuser);
-            
-            
+            String sql = "Select* from Users where UserName =? and UserPassword =?";
+            SQLQuery q = session.createSQLQuery(sql).addEntity(Users.class);
+            q.setString("UserName", username);
+            q.setString("UserPassword", password);
+            List<Users> result = (List<Users>) q.list();
+            Users u = result.get(0);
+
+            if (authenticatePassword(password, u.getUserPassword().getBytes(), u.getPasswordSalt().getBytes())) {
+                tx.commit();
+                return true;
+            }
+
+            System.out.println("tmpuser" + u);
+
             //System.out.println(tmpuser.getFirstName());
-
             //System.out.println("yyyyyyyy " + result.get(0));
-
             //q.setParameter(1, byteArrayToHexString(getEncryptedPassword(password, salt)));
 //            byte[] saltByte=hexStringtoByteArry();
 //            Users user = (Users) q.
 //            String pass = user.getUserPassword();
-           // session.close();
+            session.close();
         } catch (HibernateException e) {
             e.printStackTrace();
             try {
@@ -194,8 +192,8 @@ public class UserHelper implements UserHelperInterface {
         return returnString;
         //return new String(byteArray);
     }
-    public byte[] hexStringToByteArray(String hexString)
-    {
+
+    public byte[] hexStringToByteArray(String hexString) {
         return hexString.getBytes();
     }
 }
