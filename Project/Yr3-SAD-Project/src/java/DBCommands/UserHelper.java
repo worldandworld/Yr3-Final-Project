@@ -91,7 +91,7 @@ public class UserHelper implements UserHelperInterface {
             q.setString("UserPassword", password);
             q.setMaxResults(1);
             List<Users> result = (List<Users>) q.list();
-            Users u = (Users) result.get(4);
+            Users u = (Users) result;
 
             if (authenticatePassword(password, u.getUserPassword().getBytes(), u.getPasswordSalt().getBytes())) {
                 tx.commit();
