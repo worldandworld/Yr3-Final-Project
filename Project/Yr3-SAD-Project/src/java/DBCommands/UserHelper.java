@@ -50,19 +50,29 @@ public class UserHelper implements UserHelperInterface {
 
         try {
             tx = session.beginTransaction();
-            Query q = session.createSQLQuery("INSERT INTO `Users` (`UserId`, `UserName`, `UserPassword`,`passwordSalt`) VALUES (NULL,?,?,?)");
+            //Query q = session.createSQLQuery("INSERT INTO `Users` (`UserId`, `UserName`, `UserPassword`,`passwordSalt`) VALUES (NULL,?,?,?)");
             byte[] salt = generateSalt();
-            q.setParameter(0, userName);
-            q.setParameter(1, byteArrayToHexString(getEncryptedPassword(userPassword, salt)));
-            q.setParameter(2, byteArrayToHexString(salt));
-            int i = q.executeUpdate();
 
-            if (i > 0) {
-                System.out.println("Insert sucessfull");
-                tx.commit();
-                return true;
+            Users user = new Users();
+            user.setUserId(null);
+            user.setUserName(userName);
+            user.setUserPassword(byteArrayToHexString(getEncryptedPassword(userPassword, salt)));
+            user.setPasswordSalt(byteArrayToHexString(salt));
+            if(user != null){
+               session.save(user);
+               tx.commit();
+               return true;
             }
-
+//            q.setParameter(0, userName);
+//            q.setParameter(1, byteArrayToHexString(getEncryptedPassword(userPassword, salt)));
+//            q.setParameter(2, byteArrayToHexString(salt));
+//            int i = q.executeUpdate();
+//
+//            if (i > 0) {
+//                System.out.println("Insert sucessfull");
+//                tx.commit();
+//                return true;
+//            }
             session.close();
         } catch (NoSuchAlgorithmException | InvalidKeySpecException | HibernateException e) {
             try {
