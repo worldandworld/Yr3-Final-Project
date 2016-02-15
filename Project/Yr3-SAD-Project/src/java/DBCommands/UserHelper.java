@@ -85,11 +85,13 @@ public class UserHelper implements UserHelperInterface {
         try {
             tx = session.beginTransaction();
             String sql = "Select* from Users where UserName =? and UserPassword =?";
-            SQLQuery q = session.createSQLQuery(sql).addEntity(Users.class);
+            SQLQuery q = session.createSQLQuery(sql);
+            q.addEntity(Users.class);
             q.setString("UserName", username);
             q.setString("UserPassword", password);
+            q.setMaxResults(1);
             List<Users> result = (List<Users>) q.list();
-            Users u = result.get(0);
+            Users u = (Users) result.get(4);
 
             if (authenticatePassword(password, u.getUserPassword().getBytes(), u.getPasswordSalt().getBytes())) {
                 tx.commit();
