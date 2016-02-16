@@ -31,6 +31,7 @@ public class UserHelper implements UserHelperInterface {
 
     /**
      * This is the user command class
+     * Create HibernateUtil session to gain access to database
      */
     public UserHelper() {
         this.session = HibernateUtil.getSessionFactory().openSession(); // creating session to access the database
@@ -50,29 +51,17 @@ public class UserHelper implements UserHelperInterface {
 
         try {
             tx = session.beginTransaction();
-            //Query q = session.createSQLQuery("INSERT INTO `Users` (`UserId`, `UserName`, `UserPassword`,`passwordSalt`) VALUES (NULL,?,?,?)");
             byte[] salt = generateSalt();
-
             Users user = new Users();
             user.setUserId(null);
             user.setUserName(userName);
             user.setUserPassword(byteArrayToHexString(getEncryptedPassword(userPassword, salt)));
             user.setPasswordSalt(byteArrayToHexString(salt));
-            if(user != null){
+            if(session != null){
                session.save(user);
                tx.commit();
                return true;
             }
-//            q.setParameter(0, userName);
-//            q.setParameter(1, byteArrayToHexString(getEncryptedPassword(userPassword, salt)));
-//            q.setParameter(2, byteArrayToHexString(salt));
-//            int i = q.executeUpdate();
-//
-//            if (i > 0) {
-//                System.out.println("Insert sucessfull");
-//                tx.commit();
-//                return true;
-//            }
             session.close();
         } catch (NoSuchAlgorithmException | InvalidKeySpecException | HibernateException e) {
             try {
@@ -93,13 +82,14 @@ public class UserHelper implements UserHelperInterface {
     @Override
     public boolean loginUser(String username, String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
         try {
+            //session = HibernateUtil.getSessionFactory().openSession();
             tx = session.beginTransaction();
             String sql = "Select* from Users where UserName =? and UserPassword =?";
             SQLQuery q = session.createSQLQuery(sql);
             q.addEntity(Users.class);
             q.setString("UserName", username);
             q.setString("UserPassword", password);
-            q.setMaxResults(1);
+            //q.setMaxResults(1);
             List<Users> result = (List<Users>) q.list();
             Users u = (Users) result;
 
@@ -110,12 +100,6 @@ public class UserHelper implements UserHelperInterface {
 
             System.out.println("tmpuser" + u);
 
-            //System.out.println(tmpuser.getFirstName());
-            //System.out.println("yyyyyyyy " + result.get(0));
-            //q.setParameter(1, byteArrayToHexString(getEncryptedPassword(password, salt)));
-//            byte[] saltByte=hexStringtoByteArry();
-//            Users user = (Users) q.
-//            String pass = user.getUserPassword();
             session.close();
         } catch (HibernateException e) {
             e.printStackTrace();
