@@ -60,7 +60,7 @@ public class UserHelper implements UserHelperInterface {
             if(session != null){
                session.save(user);
                tx.commit();
-               return true;
+               return true;//
             }
             session.close();
         } catch (NoSuchAlgorithmException | InvalidKeySpecException | HibernateException e) {
