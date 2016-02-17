@@ -16,11 +16,13 @@ import java.util.List;
 import java.util.logging.Logger;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -84,13 +86,31 @@ public class UserHelper implements UserHelperInterface {
     @Override
     public boolean loginUser(String username, String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
         System.out.println("In Login User");
+        byte[] salt = generateSalt();
+        password = "Password";
+        byte[] hash = getEncryptedPassword(password, salt);
+        displayByteArray(hash);
+        System.out.println("-------------------------");
+        String hashString=new String(hash);
+        System.out.println(hashString);
+        hash=hashString.getBytes();
+        System.out.println("-----------------");
+        displayByteArray(hash);
+        System.out.println("Salt------------------------");
+        displayByteArray(salt);
+        String saltString=new String(salt);
+        System.out.println("-----------------");
+        byte [] salt1=saltString.getBytes();
+        displayByteArray(salt1);
+
         try {
             //session = HibernateUtil.getSessionFactory().openSession();
             tx = session.beginTransaction();
 
             // here get object
-            List<Users> list = session.createCriteria(Users.class).list();
-
+            Criteria criteria = session.createCriteria(Users.class);
+            criteria.add(Restrictions.eq("userName", username));
+            List<Users> list = criteria.list();
             tx.commit();
             for (Iterator iterator
                     = list.iterator(); iterator.hasNext();) {
@@ -193,6 +213,13 @@ public class UserHelper implements UserHelperInterface {
 
     public byte[] hexStringToByteArray(String hexString) {
         return hexString.getBytes();
+    }
+
+    private void displayByteArray(byte[] hash) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (int i = 0; i < hash.length; i++) {
+            System.out.println(hash[i]);
+        }
     }
 }
 
