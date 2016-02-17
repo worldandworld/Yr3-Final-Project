@@ -203,16 +203,7 @@ public class UserHelper implements UserHelperInterface {
      * @return
      */
     public String byteArrayToHexString(byte[] byteArray) {
-        String returnString = "";
-        for (int i = 0; i < byteArray.length; i++) {
-            returnString += Integer.toHexString(byteArray[i]);
-        }
-        return returnString;
-        //return new String(byteArray);
-    }
-
-    public byte[] hexStringToByteArray(String hexString) {
-        return hexString.getBytes();
+        return new String(byteArray);
     }
 
     private void displayByteArray(byte[] hash) {
