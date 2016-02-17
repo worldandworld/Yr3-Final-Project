@@ -11,7 +11,9 @@ import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import org.hibernate.HibernateException;
@@ -30,8 +32,8 @@ public class UserHelper implements UserHelperInterface {
     Transaction tx = null;
 
     /**
-     * This is the user command class
-     * Create HibernateUtil session to gain access to database
+     * This is the user command class Create HibernateUtil session to gain
+     * access to database
      */
     public UserHelper() {
         this.session = HibernateUtil.getSessionFactory().openSession(); // creating session to access the database
@@ -57,10 +59,10 @@ public class UserHelper implements UserHelperInterface {
             user.setUserName(userName);
             user.setUserPassword(byteArrayToHexString(getEncryptedPassword(userPassword, salt)));
             user.setPasswordSalt(byteArrayToHexString(salt));
-            if(session != null){
-               session.save(user);
-               tx.commit();
-               return true;//
+            if (session != null) {
+                session.save(user);
+                tx.commit();
+                return true;//
             }
             session.close();
         } catch (NoSuchAlgorithmException | InvalidKeySpecException | HibernateException e) {
@@ -81,41 +83,41 @@ public class UserHelper implements UserHelperInterface {
 
     @Override
     public boolean loginUser(String username, String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
+        System.out.println("In Login User");
         try {
             //session = HibernateUtil.getSessionFactory().openSession();
             tx = session.beginTransaction();
-            String sql = "Select* from Users where UserName =? and UserPassword =?";
-            SQLQuery q = session.createSQLQuery(sql);
-            q.addEntity(Users.class);
-            q.setString("UserName", username);
-            q.setString("UserPassword", password);
-            //q.setMaxResults(1);
-            List<Users> result = (List<Users>) q.list();
-            Users u = (Users) result;
 
-            if (authenticatePassword(password, u.getUserPassword().getBytes(), u.getPasswordSalt().getBytes())) {
-                tx.commit();
-                return true;
+            // here get object
+            List<Users> list = session.createCriteria(Users.class).list();
+
+            tx.commit();
+            for (Iterator iterator
+                    = list.iterator(); iterator.hasNext();) {
+                Users user = (Users) iterator.next();
+                System.out.print("First Name: " + user.getFirstName());
+                System.out.print("  Last Name: " + user.getLastName());
+                System.out.println("  UserName: " + user.getUserName());
             }
 
-            System.out.println("tmpuser" + u);
-
-            session.close();
-        } catch (HibernateException e) {
-            e.printStackTrace();
-            try {
+        } catch (HibernateException ex) {
+            if (tx != null) {
                 tx.rollback();
-            } catch (RuntimeException r) {
-                System.out.println("Can't rollback transaction");
-
             }
-            throw e;
+            Logger.getLogger("con").info("Exception: " + ex.getMessage());
+            ex.printStackTrace(System.err);
         } finally {
-            if (session != null) {
-                session.close();
-            }
+            session.close();
         }
-        return false;
+        /*String sql = "Select* from Users where UserName =? and UserPassword =?";
+        SQLQuery q = session.createSQLQuery(sql);
+        q.addEntity(Users.class);
+        q.setString("UserName", username);
+        q.setString("UserPassword", password);
+        //q.setMaxResults(1);
+        List<Users> result = (List<Users>) q.list();
+        Users u = (Users) result;*/
+        return true;
     }
 
     /**
