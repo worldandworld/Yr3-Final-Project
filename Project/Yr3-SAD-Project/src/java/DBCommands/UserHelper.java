@@ -16,11 +16,13 @@ import java.util.List;
 import java.util.logging.Logger;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -89,7 +91,9 @@ public class UserHelper implements UserHelperInterface {
             tx = session.beginTransaction();
 
             // here get object
-            List<Users> list = session.createCriteria(Users.class).list();
+            Criteria criteria=session.createCriteria(Users.class);
+            criteria.add(Restrictions.eq("userName", username));
+            List<Users> list = criteria.list();
 
             tx.commit();
             for (Iterator iterator
