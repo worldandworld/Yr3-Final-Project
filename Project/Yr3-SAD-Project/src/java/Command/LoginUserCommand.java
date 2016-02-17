@@ -22,12 +22,15 @@ public class LoginUserCommand implements Command {
     @Override
     public int execute(HttpServletRequest request, HttpServletResponse response) {
         String forwardToJsp = "login.html";
+        System.out.println("In Login UserCommand Execute");
 
         //The user wants to log in...
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
+        String username = request.getParameter("userName");
+        String password = request.getParameter("userPassword");
 
+        System.out.println("User "+username+"Pass "+ password);
         if (username != null && !username.isEmpty() && password != null && !password.isEmpty()) {
+            System.out.println("Valid user name Etc");
             try {
                 //Use the UserAssist class to login...
                 UserAssist userSt = new UserAssist();
@@ -48,7 +51,7 @@ public class LoginUserCommand implements Command {
                 Logger.getLogger(LoginUserCommand.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            forwardToJsp = "login.html";
+            System.out.println("Not Valid user");
         }
 
        return -1;
