@@ -56,11 +56,12 @@ public class UserHelper implements UserHelperInterface {
         try {
             tx = session.beginTransaction();
             byte[] salt = generateSalt();
+            displayByteArray(salt);
             Users user = new Users();
             user.setUserId(null);
             user.setUserName(userName);
-            user.setUserPassword(byteArrayToHexString(getEncryptedPassword(userPassword, salt)));
-            user.setPasswordSalt(byteArrayToHexString(salt));
+            user.setUserPassword(new String(getEncryptedPassword(userPassword, salt)));
+            user.setPasswordSalt(new String(salt));
             if (session != null) {
                 session.save(user);
                 tx.commit();
@@ -118,6 +119,16 @@ public class UserHelper implements UserHelperInterface {
                 System.out.print("First Name: " + user.getFirstName());
                 System.out.print("  Last Name: " + user.getLastName());
                 System.out.println("  UserName: " + user.getUserName());
+                String saltString1=user.getPasswordSalt();
+                System.out.println(saltString1);
+                byte[] salt2=saltString1.getBytes();
+                //System.out.println(saltString);
+                displayByteArray(salt2);
+                byte[] encryptedPassword=getEncryptedPassword(password,salt2);
+                System.out.println(new String(encryptedPassword));
+                encryptedPassword=getEncryptedPassword(password,salt2);
+                System.out.println(new String(encryptedPassword));
+                System.out.println(user.getUserPassword());
             }
 
         } catch (HibernateException ex) {

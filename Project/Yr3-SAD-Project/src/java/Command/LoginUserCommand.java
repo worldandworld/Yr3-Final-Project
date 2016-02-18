@@ -21,10 +21,10 @@ public class LoginUserCommand implements Command {
 
     @Override
     public int execute(HttpServletRequest request, HttpServletResponse response) {
-        String forwardToJsp = "login.html";
+        //String forwardToJsp = "login.html";
         System.out.println("In Login UserCommand Execute");
 
-        //The user wants to log in...
+        //get the Request parametres and store into Variables
         String username = request.getParameter("userName");
         String password = request.getParameter("userPassword");
 
@@ -33,15 +33,15 @@ public class LoginUserCommand implements Command {
             System.out.println("Valid user name Etc");
             try {
                 //Use the UserAssist class to login...
-                UserAssist userSt = new UserAssist();
-                boolean userLoggingIn = userSt.login(username, password);
+                UserAssist userAssist = new UserAssist();
+                boolean userLoggingIn = userAssist.login(username, password);
                 
                 if (userLoggingIn) {
                     //If login successful, store the session id for this client...
                     HttpSession session = request.getSession();
                     String clientSessionId = session.getId();
                     session.setAttribute("loggedSessionId", clientSessionId);
-                    session.setAttribute("user", userLoggingIn);
+                    session.setAttribute("user", username);
                     
                     return 0;
                 } else {
